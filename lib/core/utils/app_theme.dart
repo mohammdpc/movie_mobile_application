@@ -26,10 +26,14 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
+          side: BorderSide(
+            color: AppColors.accentYellow,
+            width: 2,
+          ),
         ),
         foregroundColor: AppColors.darkGray,
         backgroundColor: AppColors.accentYellow,
-        padding: EdgeInsets.symmetric(vertical: 15),
+        padding: EdgeInsets.symmetric(vertical: 16),
       ),
     ),
   );
