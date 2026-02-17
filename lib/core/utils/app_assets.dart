@@ -1,26 +1,27 @@
 class AppAssets {
-  //icons
-  static String clock = 'assets/icons/clock.png';
-  static String eg = 'assets/icons/EG.png';
-  static String explore = 'assets/icons/explore.png';
-  static String folder = 'assets/icons/Folder.png';
-  static String google = 'assets/icons/google.png';
-  static String watchList = 'assets/icons/Group 20.png';
-  static String heart = 'assets/icons/heart.png';
-  static String home = 'assets/icons/home.png';
-  static String identification = 'assets/icons/Identification.png';
-  static String lr = 'assets/icons/LR.png';
-  static String profile = 'assets/icons/profile.png';
-  static String search = 'assets/icons/search.png';
-  static String star = 'assets/icons/star.png';
-  static String email = 'assets/icons/email.png';
-  static String password = 'assets/icons/password.png';
-  static String phone = 'assets/icons/phone.png';
 
-  static const String baseUrl = "assets/images/";
-  static const eyeSlashIcon = "${baseUrl}eye-slash.svg";
-  static const eyeIcon = "${baseUrl}eye.svg";
-  static const googleIcon = "${baseUrl}googleIcon.svg";
+  //icons
+  static const String iconsBaseUrl = "assets/icons/";
+  static const eyeSlashIcon = "${iconsBaseUrl}eye-slash.svg";
+  static const eyeIcon = "${iconsBaseUrl}eye.svg";
+  static const googleIcon = "${iconsBaseUrl}googleIcon.svg";
+  static const String clock = '${iconsBaseUrl}clock.svg';
+  static const String eg = '${iconsBaseUrl}EG.svg';
+  static const String explore = '${iconsBaseUrl}explore.svg';
+  static const String folder = '${iconsBaseUrl}Folder.svg';
+  static const String watchList = '${iconsBaseUrl}Group 20.svg';
+  static const String heart = '${iconsBaseUrl}heart.svg';
+  static const String home = '${iconsBaseUrl}home.svg';
+  static const String identification = '${iconsBaseUrl}Identification.svg';
+  static const String lr = '${iconsBaseUrl}LR.svg';
+  static const String profile = '${iconsBaseUrl}profile.svg';
+  static const String search = '${iconsBaseUrl}search.svg';
+  static const String star = '${iconsBaseUrl}star.svg';
+  static const String email = '${iconsBaseUrl}email.svg';
+  static const String password = 'a${iconsBaseUrl}password.svg';
+  static const String phone = '${iconsBaseUrl}phone.svg';
+
+
 
   //image
   static List<String> avatarList = [

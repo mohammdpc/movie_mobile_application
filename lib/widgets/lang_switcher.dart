@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie/core/utils/app_assets.dart';
 import 'package:movie/core/utils/app_colors.dart';
 import 'package:movie/core/utils/app_utils.dart';
@@ -47,11 +48,7 @@ class _LangSwitcherState extends State<LangSwitcher> {
                   width: 4,
                 ),
               ),
-              child: Image.asset(
-                AppAssets.lr,
-                width: widthOf(27.29, context),
-                fit: BoxFit.contain,
-              ),
+              child: SvgPicture.asset(AppAssets.lr,),
             ),
           ),
 
@@ -73,11 +70,7 @@ class _LangSwitcherState extends State<LangSwitcher> {
                   width: 4,
                 ),
               ),
-              child: Image.asset(
-                AppAssets.eg,
-                width: widthOf(27.29, context),
-                fit: BoxFit.contain,
-              ),
+              child: SvgPicture.asset(AppAssets.eg,),
             ),
           ),
         ],
