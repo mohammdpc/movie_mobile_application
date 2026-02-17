@@ -37,6 +37,7 @@ dependencies:
   google_fonts: ^6.3.2
   carousel_slider: ^5.1.2
   easy_localization: ^3.0.8
+  flutter_svg: ^2.2.3
 
 dev_dependencies:
   flutter_test:

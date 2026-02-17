@@ -17,6 +17,11 @@ class AppAssets {
   static String password = 'assets/icons/password.png';
   static String phone = 'assets/icons/phone.png';
 
+  static const String baseUrl = "assets/images/";
+  static const eyeSlashIcon = "${baseUrl}eye-slash.svg";
+  static const eyeIcon = "${baseUrl}eye.svg";
+  static const googleIcon = "${baseUrl}googleIcon.svg";
+
   //image
   static List<String> avatarList = [
     'assets/images/av1.png',
