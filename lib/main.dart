@@ -28,7 +28,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
-      routes: {AppRoutes.updateProfileScreen: (context) => UpdateProfilePage()},
+      routes: {
+        AppRoutes.updateProfileScreen: (context) => UpdateProfilePage(),
+        AppRoutes.registerScreen:(context) => RegisterScreen(),
+      } ,
       initialRoute: AppRoutes.updateProfileScreen,
     );
   }

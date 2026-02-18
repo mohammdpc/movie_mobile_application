@@ -109,7 +109,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     if (iconSource is String) {
       child = SvgPicture.asset(
         iconSource,
-        colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
+        //colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
       );
     } else if (iconSource is Widget) {
       child = IconTheme(
