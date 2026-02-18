@@ -15,7 +15,7 @@
   "passwordTooShort" : "يجب أن تتكون كلمة المرور من ٨ أحرف على الأقل",
   "emptyPhoneNumber": "رقم الهاتف مطلوب",
   "phoneNumberIsTooShort": "رقم الهاتف قصير جدًا",
-  "nameIsRequired" : "الاسم مطلوب"
+  "nameIsRequired" : "الاسم مطلوب",
   "pick_avatar": "اختر صورة شخصية",
   "update_data": "تحديث البيانات",
   "reset_password": "إعادة تعيين كلمة المرور",

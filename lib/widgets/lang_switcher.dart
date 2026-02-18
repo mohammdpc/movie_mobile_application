@@ -15,11 +15,10 @@ class LangSwitcher extends StatefulWidget {
 }
 
 class _LangSwitcherState extends State<LangSwitcher> {
-  String currentLang = 'en';
 
   @override
   Widget build(BuildContext context) {
-
+    String currentLang = context.locale.languageCode;
     return Container(
       height: heightOf(37.89, context),
       width: widthOf(92.11, context),
@@ -33,7 +32,7 @@ class _LangSwitcherState extends State<LangSwitcher> {
         children: [
           InkWell(
             onTap: () async{
-              await context.setLocale(Locale('en', 'US'));
+              await context.setLocale(Locale('en'));
               currentLang = context.locale.languageCode;
               setState(() {});
             },
@@ -54,10 +53,9 @@ class _LangSwitcherState extends State<LangSwitcher> {
 
           InkWell(
             onTap: () async{
-              //currentLang = 'ar';
-              await context.setLocale(Locale('ar', 'EG'));
+              await context.setLocale(Locale('ar'));
               currentLang = context.locale.languageCode;
-              setState(() {});
+
             },
             child: Container(
               decoration: BoxDecoration(
