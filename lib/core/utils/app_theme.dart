@@ -5,6 +5,7 @@ import 'app_styles.dart';
 
 class AppTheme {
   static final darkTheme = ThemeData(
+    // useMaterial3: false,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.transparentColor,
       centerTitle: true,
