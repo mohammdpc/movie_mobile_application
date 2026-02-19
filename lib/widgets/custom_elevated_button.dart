@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import '../core/utils/app_colors.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  VoidCallback function;
-  String text;
-  Color? backgroundColor;
-  TextStyle textStyle;
-  Widget? icon;
-  Color borderColor;
-  CustomElevatedButton({
+  final VoidCallback function;
+  final String text;
+  final Color? backgroundColor;
+  final TextStyle textStyle;
+  final Widget? icon;
+  final Color borderColor;
+  const CustomElevatedButton({
     super.key,
     required this.function,
     required this.text,
