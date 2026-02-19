@@ -25,7 +25,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     text: "01200000000",
   );
   int currentIconIndex = 2;
-
+  final _formKey = GlobalKey<FormState>();
   @override
   void dispose() {
     // TODO: implement dispose
@@ -59,6 +59,11 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
           SizedBox(height: context.height * 0.0214,),
           CustomElevatedButton(
             function: () {
+              if (_formKey.currentState!.validate()) {
+                print("Form is valid! Proceeding...");
+              } else {
+                print("Form has errors.");
+              }
               // todo: Update account logic
             },
             text: LocaleKeys.update_data.tr(),
@@ -76,57 +81,75 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
 
         title: Text(LocaleKeys.pick_avatar.tr(), style: AppStyles.regular16AccentYellow),
       ),
-      body: Padding(
-        padding: EdgeInsets.only(
-          top: context.height * 0.06,
-          bottom: context.height * 0.008,
-          left: context.width * 0.017,
-          right: context.width * 0.017,
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: context.height * 0.0214,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  BottomDialog.showGridBottomDialog(context, currentIconIndex, (int index,)
-                  {
-                    setState(() {
-                      currentIconIndex = index + 1;
-                      Navigator.of(context).pop();
+      body: Form(
+        key: _formKey,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: context.height * 0.06,
+            bottom: context.height * 0.008,
+            left: context.width * 0.017,
+            right: context.width * 0.017,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: context.height * 0.0214,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    BottomDialog.showGridBottomDialog(context, currentIconIndex, (int index,)
+                    {
+                      setState(() {
+                        currentIconIndex = index + 1;
+                        Navigator.of(context).pop();
+                      });
                     });
-                  });
-                },
-                child: Center(
-                  child: Image.asset(
-                    "${AppAssets.baseUrl}gamer$currentIconIndex.png",
-                    fit: BoxFit.fill,
+                  },
+                  child: Center(
+                    child: Image.asset(
+                      "${AppAssets.baseUrl}gamer$currentIconIndex.png",
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 0),
-              CustomTextField(
-                prefixPadding: const EdgeInsets.only(left: 16, right: 14),
-                controller: userNameController,
-                textStyle: AppStyles.regular20White,
-                verticalPadding: 16,
-                prefixIcon: SvgPicture.asset(AppAssets.userIcon),
-              ),
-              CustomTextField(
-                prefixPadding: const EdgeInsets.only(left: 16, right: 14),
-                controller: phoneController,
-                textStyle: AppStyles.regular20White,
-                verticalPadding: 16,
-                prefixIcon: SvgPicture.asset(AppAssets.phoneIcon),
-              ),
-              TextButton(
-                onPressed: () {
-                  // todo: Reset password logic
-                },
-                child: Text(LocaleKeys.reset_password.tr(), style: AppStyles.regular20White),
-              ),
-            ],
+                SizedBox(height: 0),
+                CustomTextField(
+                  validator: (name){
+                    if(name == null || name.trim().isEmpty){
+                      return LocaleKeys.username_empty.tr();
+                    }
+                    return null;
+                  },
+                  prefixPadding: const EdgeInsets.only(left: 16, right: 14),
+                  controller: userNameController,
+                  textStyle: AppStyles.regular20White,
+                  verticalPadding: 16,
+                  prefixIcon: SvgPicture.asset(AppAssets.userIcon),
+                ),
+                CustomTextField(
+                  validator: (phone){
+                    if(phone == null || phone.trim().isEmpty){
+                      return LocaleKeys.phone_empty.tr();
+                    }
+                    if(phone.length<11){
+                      return LocaleKeys.phone_invalid.tr(args: ['11']);
+                    }
+                    return null;
+                  },
+                  prefixPadding: const EdgeInsets.only(left: 16, right: 14),
+                  controller: phoneController,
+                  textStyle: AppStyles.regular20White,
+                  verticalPadding: 16,
+                  prefixIcon: SvgPicture.asset(AppAssets.phoneIcon),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // todo: Reset password logic
+                  },
+                  child: Text(LocaleKeys.reset_password.tr(), style: AppStyles.regular20White),
+                ),
+              ],
+            ),
           ),
         ),
       ),
