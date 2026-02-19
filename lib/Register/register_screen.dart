@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 
 import 'package:movie/core/utils/app_utils.dart';
 import 'package:movie/core/utils/app_assets.dart';
@@ -35,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: EdgeInsetsGeometry.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: widthOf(16, context),
           ),
           child: SingleChildScrollView(
