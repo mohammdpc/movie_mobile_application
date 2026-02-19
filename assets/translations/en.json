@@ -22,5 +22,10 @@
   "username_empty": "Username cannot be empty",
   "phone_empty": "Phone number cannot be empty",
   "phone_invalid": "Phone number must be at least {} digits",
+  "forget_password_question": "Forget Password?",
+  "dont_have_account": "Don’t have an account ?",
+  "create_one": "Create One",
+  "or": "OR",
+  "login_with_google": "Login With Google",
   "delete_account": "Delete Account"
 }

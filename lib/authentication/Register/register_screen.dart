@@ -1,19 +1,16 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
 import 'package:movie/core/utils/app_utils.dart';
 import 'package:movie/core/utils/app_assets.dart';
-
-import '../core/utils/app_styles.dart';
-
-import '../widgets/lang_switcher.dart';
-import '../widgets/link_text.dart';
-import '../widgets/custom_elevated_button.dart';
-import '../widgets/custom_text_field.dart';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:movie/lang/locale_keys.g.dart';
+
+import '../../core/utils/app_styles.dart';
+import '../../widgets/custom_elevated_button.dart';
+import '../../widgets/custom_text_field.dart';
+import '../../widgets/lang_switcher.dart';
+import '../../widgets/link_text.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

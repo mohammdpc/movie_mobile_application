@@ -18,6 +18,11 @@ class AppStyles{
     fontWeight: FontWeight.w400,
     color: AppColors.white,
   );
+  static final TextStyle regular15AccentYellow = GoogleFonts.roboto(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    color: AppColors.accentYellow,
+  );
   static final regular16Yellow = GoogleFonts.roboto(
     fontSize: 16,
     fontWeight: FontWeight.w400,
