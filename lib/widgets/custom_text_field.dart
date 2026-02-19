@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie/core/utils/app_colors.dart';
 import 'package:movie/core/utils/app_styles.dart';
+import 'package:movie/core/utils/app_utils.dart';
 import '../core/utils/app_assets.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -23,12 +24,12 @@ class CustomTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final int? maxLines;
   final bool isEnabled;
-  void Function(String)? onChanged;
-  bool obscure;
-  bool isPassword;
+  final void Function(String)? onChanged;
+  final bool obscure;
+  final bool  isPassword;
 
 
-  CustomTextField({
+  const CustomTextField({
     super.key,
     this.hintText,
     this.hintStyleDark,
@@ -55,6 +56,14 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
+   bool  obscure = false;
+
+  @override
+  void initState() {
+    obscure = widget.obscure;
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
 
@@ -64,7 +73,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       //   FocusManager.instance.primaryFocus?.unfocus();
       // },
       maxLines: widget.maxLines ?? 1,
-      obscureText: widget.obscure,
+      obscureText: obscure,
       // autovalidateMode: AutovalidateMode.onUserInteraction,
       controller: widget.controller,
       validator: widget.validator,
@@ -74,6 +83,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         filled: true,
         fillColor: AppColors.darkGray,
+
+        contentPadding: EdgeInsets.symmetric(vertical: heightOf(11, context)),
 
         enabledBorder: _buildBorder(),
         disabledBorder: _buildBorder(),
@@ -94,14 +105,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 
   Widget? _getIcon(dynamic iconSource, bool isSuffix) {
-    if (iconSource == null) return null;
+    if (iconSource == null ) return null;
 
-    Color iconColor;
-    if (isSuffix) {
-      iconColor = widget.suffixColorDark??AppColors.white;
-    } else {
-      iconColor = widget.prefixColorDark??AppColors.white;
-    }
+    Color iconColor = (isSuffix?widget.suffixColorDark:widget.prefixColorDark)??AppColors.white;
+
     Widget child;
     if (iconSource is String) {
       child = SvgPicture.asset(
@@ -119,15 +126,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
     if (widget.isPassword && isSuffix) {
       return GestureDetector(
         onTap: () {
-          widget.obscure = !widget.obscure;
+          obscure = !obscure;
           setState(() {
 
           });
         },
         child: Padding(
-            padding: isSuffix ? widget.suffixPadding : widget.prefixPadding,
+            padding:widget.suffixPadding,
             child: SvgPicture.asset(
-              widget.obscure ? AppAssets.eyeSlashIcon : AppAssets.eyeIcon,
+              obscure ? AppAssets.eyeSlashIcon : AppAssets.eyeIcon,
               colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
             )
         ),

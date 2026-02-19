@@ -2,9 +2,9 @@ class AppAssets {
 
   //icons
   static const String iconsBaseUrl = "assets/icons/";
-  static const eyeSlashIcon = "${iconsBaseUrl}eye-slash.svg";
-  static const eyeIcon = "${iconsBaseUrl}eye.svg";
-  static const googleIcon = "${iconsBaseUrl}googleIcon.svg";
+  static const String eyeSlashIcon = "${iconsBaseUrl}eye-slash.svg";
+  static const String eyeIcon = "${iconsBaseUrl}eye.svg";
+  static const String googleIcon = "${iconsBaseUrl}googleIcon.svg";
   static const String clock = '${iconsBaseUrl}clock.svg';
   static const String eg = '${iconsBaseUrl}EG.svg';
   static const String explore = '${iconsBaseUrl}explore.svg';
@@ -18,7 +18,7 @@ class AppAssets {
   static const String search = '${iconsBaseUrl}search.svg';
   static const String star = '${iconsBaseUrl}star.svg';
   static const String email = '${iconsBaseUrl}email.svg';
-  static const String password = 'a${iconsBaseUrl}password.svg';
+  static const String password = '${iconsBaseUrl}password.svg';
   static const String phone = '${iconsBaseUrl}phone.svg';
 
 
