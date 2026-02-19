@@ -19,5 +19,8 @@
   "pick_avatar": "Pick Avatar",
   "update_data": "Update Data",
   "reset_password": "Reset Password",
+  "username_empty": "Username cannot be empty",
+  "phone_empty": "Phone number cannot be empty",
+  "phone_invalid": "Phone number must be at least {} digits",
   "delete_account": "Delete Account"
 }

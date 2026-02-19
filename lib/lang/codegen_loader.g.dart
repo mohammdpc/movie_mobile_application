@@ -35,6 +35,9 @@ class CodegenLoader extends AssetLoader{
   "pick_avatar": "اختر صورة شخصية",
   "update_data": "تحديث البيانات",
   "reset_password": "إعادة تعيين كلمة المرور",
+  "username_empty": "اسم المستخدم لا يمكن أن يكون فارغاً",
+  "phone_empty": "رقم الهاتف لا يمكن أن يكون فارغاً",
+  "phone_invalid": "يجب أن يتكون رقم الهاتف من {} أرقام على الأقل",
   "delete_account": "حذف الحساب"
 };
 static const Map<String,dynamic> _en = {
@@ -58,6 +61,9 @@ static const Map<String,dynamic> _en = {
   "pick_avatar": "Pick Avatar",
   "update_data": "Update Data",
   "reset_password": "Reset Password",
+  "username_empty": "Username cannot be empty",
+  "phone_empty": "Phone number cannot be empty",
+  "phone_invalid": "Phone number must be at least {} digits",
   "delete_account": "Delete Account"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
