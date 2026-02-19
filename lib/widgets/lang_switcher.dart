@@ -1,9 +1,11 @@
+
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:movie/core/utils/app_assets.dart';
-import 'package:movie/core/utils/app_colors.dart';
-import 'package:movie/core/utils/app_utils.dart';
+import 'package:flutter_svg/svg.dart';
+import 'dart:ui' as ui;
+import '../core/utils/app_assets.dart';
+import '../core/utils/app_colors.dart';
 
 class LangSwitcher extends StatefulWidget {
   static const String routeName = 'switch';
@@ -17,61 +19,71 @@ class LangSwitcher extends StatefulWidget {
 class _LangSwitcherState extends State<LangSwitcher> {
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    String currentLang = context.locale.languageCode;
-    return Container(
-      height: heightOf(37.89, context),
-      width: widthOf(92.11, context),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-        color: AppColors.transparentColor,
-        border: Border.all(color: AppColors.accentYellow, width: 2),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          InkWell(
-            onTap: () async{
-              await context.setLocale(Locale('en'));
-              currentLang = context.locale.languageCode;
-              setState(() {});
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color:
-                      currentLang == 'en'
-                          ? AppColors.accentYellow
-                          : AppColors.transparentColor,
-                  width: 4,
+    return Directionality(
+      textDirection: ui.TextDirection.ltr,
+      child: Container(
+        height: 39,
+        width: 92,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: AppColors.transparentColor,
+          border: Border.all(color: AppColors.accentYellow, width: 2),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            GestureDetector(
+              onTap: () async {
+                await context.setLocale(Locale('en'));
+              },
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeInOut,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color:
+                    context.locale.languageCode == 'en'
+                            ? AppColors.accentYellow
+                            : AppColors.transparentColor,
+                    width: 4,
+                  ),
                 ),
+                child: SvgPicture.asset(AppAssets.en),
               ),
-              child: SvgPicture.asset(AppAssets.lr,),
             ),
-          ),
 
-          InkWell(
-            onTap: () async{
-              await context.setLocale(Locale('ar'));
-              currentLang = context.locale.languageCode;
-
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color:
-                      currentLang == 'ar'
-                          ? AppColors.accentYellow
-                          : AppColors.transparentColor,
-                  width: 4,
+            GestureDetector(
+              onTap: () async {
+                await context.setLocale(Locale('ar'));
+              },
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 230),
+                curve: Curves.easeInOut,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color:
+                    context.locale.languageCode == 'ar'
+                            ? AppColors.accentYellow
+                            : AppColors.transparentColor,
+                    width: 4,
+                  ),
                 ),
+                child: SvgPicture.asset(AppAssets.eg),
               ),
-              child: SvgPicture.asset(AppAssets.eg,),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

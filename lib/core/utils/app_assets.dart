@@ -13,7 +13,7 @@ class AppAssets {
   static const String heart = '${iconsBaseUrl}heart.svg';
   static const String home = '${iconsBaseUrl}home.svg';
   static const String identification = '${iconsBaseUrl}Identification.svg';
-  static const String lr = '${iconsBaseUrl}LR.svg';
+  static const String en = '${iconsBaseUrl}LR.svg';
   static const String profile = '${iconsBaseUrl}profile.svg';
   static const String search = '${iconsBaseUrl}search.svg';
   static const String star = '${iconsBaseUrl}star.svg';

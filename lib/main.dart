@@ -6,9 +6,6 @@ import 'core/utils/app_routes.dart';
 import 'core/utils/app_theme.dart';
 import 'lang/codegen_loader.g.dart';
 
-import 'package:movie/home/update_profile_page/update_profile_page.dart';
-import 'package:movie/Register/register_screen.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
