@@ -2,9 +2,9 @@ class AppAssets {
 
   //icons
   static const String iconsBaseUrl = "assets/icons/";
-  static const eyeSlashIcon = "${iconsBaseUrl}eye-slash.svg";
-  static const eyeIcon = "${iconsBaseUrl}eye.svg";
-  static const googleIcon = "${iconsBaseUrl}googleIcon.svg";
+  static const String eyeSlashIcon = "${iconsBaseUrl}eye-slash.svg";
+  static const String eyeIcon = "${iconsBaseUrl}eye.svg";
+  static const String googleIcon = "${iconsBaseUrl}googleIcon.svg";
   static const String clock = '${iconsBaseUrl}clock.svg';
   static const String eg = '${iconsBaseUrl}EG.svg';
   static const String explore = '${iconsBaseUrl}explore.svg';
@@ -21,17 +21,17 @@ class AppAssets {
   static const String password = '${iconsBaseUrl}password.svg';
   static const String phone = '${iconsBaseUrl}phone.svg';
   static const String baseUrl = "assets/images/";
-  static const gamer1Icon = "${baseUrl}gamer1.png";
-  static const gamer2Icon = "${baseUrl}gamer2.png";
-  static const gamer3Icon = "${baseUrl}gamer3.png";
-  static const gamer4Icon = "${baseUrl}gamer4.png";
-  static const gamer5Icon = "${baseUrl}gamer5.png";
-  static const gamer6Icon = "${baseUrl}gamer6.png";
-  static const gamer7Icon = "${baseUrl}gamer7.png";
-  static const gamer8Icon = "${baseUrl}gamer8.png";
-  static const gamer9Icon = "${baseUrl}gamer9.png";
-  static const userIcon = "${baseUrl}user.svg";
-  static const phoneIcon = "${baseUrl}phone.svg";
+  static const String gamer1Icon = "${baseUrl}gamer1.png";
+  static const String gamer2Icon = "${baseUrl}gamer2.png";
+  static const String gamer3Icon = "${baseUrl}gamer3.png";
+  static const String gamer4Icon = "${baseUrl}gamer4.png";
+  static const String gamer5Icon = "${baseUrl}gamer5.png";
+  static const String gamer6Icon = "${baseUrl}gamer6.png";
+  static const String gamer7Icon = "${baseUrl}gamer7.png";
+  static const String gamer8Icon = "${baseUrl}gamer8.png";
+  static const String gamer9Icon = "${baseUrl}gamer9.png";
+  static const String userIcon = "${baseUrl}user.svg";
+  static const String phoneIcon = "${baseUrl}phone.svg";
 
 
   //image

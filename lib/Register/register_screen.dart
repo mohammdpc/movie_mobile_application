@@ -69,6 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextField(
                   prefixIcon: AppAssets.identification,
                   hintText: context.tr(LocaleKeys.name),
+                  verticalPadding: heightOf(11, context),
                   validator:
                       (v) =>
                           v == null || v.isEmpty
@@ -82,6 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextField(
                   prefixIcon: AppAssets.email,
                   hintText: context.tr(LocaleKeys.email),
+                  verticalPadding: heightOf(11, context),
                   validator: (v) {
                     RegExp checker = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
                     if (v == null || v.isEmpty) {
@@ -99,6 +101,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextField(
                   prefixIcon: AppAssets.password,
                   suffixIcon: AppAssets.eyeIcon,
+                  verticalPadding: heightOf(11, context),
                   obscure: true,
                   isPassword: true,
                   hintText: context.tr(LocaleKeys.password),
@@ -118,6 +121,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextField(
                   prefixIcon: AppAssets.password,
                   suffixIcon: AppAssets.eyeIcon,
+                  verticalPadding: heightOf(11, context),
                   obscure: true,
                   isPassword: true,
                   hintText: context.tr(LocaleKeys.confirmPassword),
@@ -135,6 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomTextField(
                   prefixIcon: AppAssets.phone,
                   hintText: context.tr(LocaleKeys.phoneNumber),
+                  verticalPadding: heightOf(11, context),
                   controller: phoneController,
                   validator:
                       (v) =>
