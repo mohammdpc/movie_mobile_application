@@ -7,9 +7,8 @@ plugins {
 
 android {
     namespace = "com.example.movie"
-    compileSdk = 36
-    buildToolsVersion = "36.0.0"
-    ndkVersion = flutter.ndkVersion
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

@@ -9,6 +9,7 @@ class CustomTextField extends StatefulWidget {
   final String? hintText;
   final TextStyle? hintStyleDark;
   final TextStyle? textStyle;
+  final double verticalPadding;
 
   // New Color Attributes for Icons
   final Color? prefixColorDark;
@@ -37,9 +38,10 @@ class CustomTextField extends StatefulWidget {
     this.prefixColorDark,
     this.suffixColorDark,
     this.borderRadius = 15.0,
-    this.suffixPadding = const EdgeInsets.symmetric(horizontal: 16),
-    this.prefixPadding = const EdgeInsets.symmetric(horizontal: 16),
+    this.suffixPadding = const EdgeInsets.only(left: 16,right: 16),
+    this.prefixPadding = const EdgeInsets.only(left: 16,right: 16),
     this.minHeight = 24.0,
+    this.verticalPadding = 0,
     this.suffixIcon,
     this.prefixIcon,
     this.controller,
@@ -81,6 +83,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       style: widget.textStyle??AppStyles.regular20White,
       cursorColor: AppColors.accentYellow,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: widget.verticalPadding),
         filled: true,
         fillColor: AppColors.darkGray,
 
