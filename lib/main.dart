@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/home/login_screen/login_screen.dart';
 import 'package:movie/home/update_profile_page/update_profile_page.dart';
 import 'Register/register_screen.dart';
 import 'core/utils/app_routes.dart';
@@ -29,7 +30,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
+      initialRoute: AppRoutes.LoginScreen,
       routes: {
+        AppRoutes.loginScreen:(context)=>LoginScreen(),
         AppRoutes.updateProfileScreen: (context) => UpdateProfilePage(),
         AppRoutes.registerScreen:(context) => RegisterScreen(),
       } ,

@@ -32,6 +32,7 @@ class AppAssets {
   static const String gamer9Icon = "${baseUrl}gamer9.png";
   static const String userIcon = "${baseUrl}user.svg";
   static const String phoneIcon = "${baseUrl}phone.svg";
+  static const String logoMovie = "assets/images/logoMovie1.png";
 
 
   //image
