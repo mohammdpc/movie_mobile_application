@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/core/utils/app_routes.dart';
 import 'package:movie/core/utils/app_utils.dart';
 import 'package:movie/core/utils/app_assets.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -162,13 +163,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 SizedBox(height: heightOf(17.67, context)),
             
                 Row(
+                  spacing: 4,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(context.tr(LocaleKeys.alreadyHasAnAccount)),
                     LinkText(
                       text: context.tr(LocaleKeys.login),
                       action: () {
-                        /*todo*/
+                        Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.loginScreen, (route) => false);
                       },
                     ),
                   ],

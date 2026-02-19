@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie/core/utils/app_assets.dart';
 import 'package:movie/core/utils/app_colors.dart';
+import 'package:movie/core/utils/app_routes.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/extensions/device_dimensions.dart';
 import 'package:movie/widgets/custom_elevated_button.dart';
@@ -64,13 +65,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 CustomElevatedButton(
-                  function: () {},
+                  function: () {
+                    //just for testing
+                    Navigator.of(context).pushNamed(AppRoutes.updateProfileScreen);
+                  },
                   text: 'login'.tr(),
-                  textStyle: TextStyle(
-                    color: AppColors.darkGray,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  textStyle: AppStyles.regular20Black,
+
                   backgroundColor: AppColors.accentYellow,
                 ),
                 Row(
@@ -79,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Text(
                       'dont_have_account'.tr(),
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
@@ -87,7 +88,9 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(AppRoutes.registerScreen);
+                      },
                       child: Text(
                         'create_one'.tr(),
                         style: Theme.of(context).textTheme.titleMedium!
@@ -124,11 +127,8 @@ class LoginScreen extends StatelessWidget {
                   },
                   icon: SvgPicture.asset(AppAssets.googleIcon),
                   text: 'login_with_google'.tr(),
-                  textStyle: TextStyle(
-                    color: AppColors.darkGray,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
+                  textStyle: AppStyles.regular20Black,
+
                   backgroundColor: AppColors.accentYellow,
                 ),
 
