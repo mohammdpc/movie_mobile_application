@@ -31,7 +31,11 @@ class CodegenLoader extends AssetLoader{
   "passwordTooShort": "يجب أن تتكون كلمة المرور من ٨ أحرف على الأقل",
   "emptyPhoneNumber": "رقم الهاتف مطلوب",
   "phoneNumberIsTooShort": "رقم الهاتف قصير جدًا",
-  "nameIsRequired": "الاسم مطلوب"
+  "nameIsRequired": "الاسم مطلوب",
+  "pick_avatar": "اختر صورة شخصية",
+  "update_data": "تحديث البيانات",
+  "reset_password": "إعادة تعيين كلمة المرور",
+  "delete_account": "حذف الحساب"
 };
 static const Map<String,dynamic> _en = {
   "register": "Register",
@@ -50,7 +54,11 @@ static const Map<String,dynamic> _en = {
   "passwordTooShort": "Password must be at least 8 characters",
   "emptyPhoneNumber": "Phone number is required",
   "phoneNumberIsTooShort": "Phone number is too short",
-  "nameIsRequired": "Name is required"
+  "nameIsRequired": "Name is required",
+  "pick_avatar": "Pick Avatar",
+  "update_data": "Update Data",
+  "reset_password": "Reset Password",
+  "delete_account": "Delete Account"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
 }

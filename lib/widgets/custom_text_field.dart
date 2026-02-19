@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie/core/utils/app_colors.dart';
 import 'package:movie/core/utils/app_styles.dart';
-import 'package:movie/core/utils/app_utils.dart';
 import '../core/utils/app_assets.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -86,8 +85,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
         contentPadding: EdgeInsets.symmetric(vertical: widget.verticalPadding),
         filled: true,
         fillColor: AppColors.darkGray,
-
-        contentPadding: EdgeInsets.symmetric(vertical: heightOf(11, context)),
 
         enabledBorder: _buildBorder(),
         disabledBorder: _buildBorder(),
