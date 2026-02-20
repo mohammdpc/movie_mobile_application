@@ -169,7 +169,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       text: context.tr(LocaleKeys.login),
                       action: () {
                         /*todo*/
-                        Navigator.of(context).pushNamed(AppRoutes.loginScreen);
+                        Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.loginScreen, (route) => false);
                       },
                     ),
                   ],
