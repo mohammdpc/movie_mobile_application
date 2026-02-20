@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                   onPressed: () {
-                    //المفروض لما يضغط عليها يروح للصفحه اللي تعمله باسوورد تاني
+                    Navigator.of(context).pushNamed(AppRoutes.resetPasswordScreen);
                   },
                   child: Text(
                     'forget_password_question'.tr(),

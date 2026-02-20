@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/authentication/reset_password/reset_password.dart';
 import 'package:movie/home/update_profile_page/update_profile_page.dart';
 import 'package:movie/on_boarding/onboarding_screen.dart';
 import 'authentication/Register/register_screen.dart';
@@ -36,6 +37,8 @@ class MyApp extends StatelessWidget {
         AppRoutes.updateProfileScreen: (context) => UpdateProfilePage(),
         AppRoutes.registerScreen:(context) => RegisterScreen(),
         AppRoutes.onBoardingScreen:(context) => OnboardingScreen(),
+        AppRoutes.resetPasswordScreen:(context) => ResetPassword(),
+
       } ,
       initialRoute: AppRoutes.onBoardingScreen,
     );

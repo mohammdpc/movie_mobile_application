@@ -3,5 +3,6 @@ class AppRoutes{
   static const String loginScreen='LoginScreen';
   static const String registerScreen = "register_screen";
   static const String onBoardingScreen = "on_boarding_screen";
+  static const String resetPasswordScreen = "rest_password_screen";
 
 }
