@@ -6,7 +6,6 @@ import 'package:movie/core/utils/app_colors.dart';
 import 'package:movie/core/utils/app_routes.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/extensions/device_dimensions.dart';
-import 'package:movie/home/forget_password_page/forget_password_page.dart';
 import 'package:movie/widgets/custom_elevated_button.dart';
 import 'package:movie/widgets/custom_text_field.dart';
 
@@ -56,9 +55,7 @@ class LoginScreen extends StatelessWidget {
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                   onPressed: () {
-
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgetPasswordPage()));
-                    //المفروض لما يضغط عليها يروح للصفحه اللي تعمله باسوورد تاني
+                    Navigator.of(context).pushNamed(AppRoutes.resetPasswordScreen);
                   },
                   child: Text(
                     'forget_password_question'.tr(),
