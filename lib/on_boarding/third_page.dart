@@ -67,7 +67,7 @@ class ThirdPage extends StatelessWidget {
                    Text(
                      "watchlist_desc".tr(),                    style: TextStyle(
                       color: Colors.white,
-                      fontSize: 15,
+                      fontSize: 18,
                     ),
                     textAlign: TextAlign.center,
                   ),

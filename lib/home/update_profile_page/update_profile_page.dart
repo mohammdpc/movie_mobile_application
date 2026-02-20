@@ -6,6 +6,7 @@ import 'package:movie/core/utils/app_colors.dart';
 import 'package:movie/core/utils/app_routes.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/extensions/device_dimensions.dart';
+import 'package:movie/extensions/validations.dart';
 import 'package:movie/home/update_profile_page/widgets/bottom_dialog.dart';
 import 'package:movie/lang/locale_keys.g.dart';
 import 'package:movie/widgets/custom_elevated_button.dart';
@@ -73,13 +74,6 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         ],
       ),
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(Icons.arrow_back_rounded, color: AppColors.accentYellow),
-        ),
-
         title: Text(LocaleKeys.pick_avatar.tr(), style: AppStyles.regular16AccentYellow),
       ),
       body: Form(
@@ -115,12 +109,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                 ),
                 SizedBox(height: 0),
                 CustomTextField(
-                  validator: (name){
-                    if(name == null || name.trim().isEmpty){
-                      return LocaleKeys.username_empty.tr();
-                    }
-                    return null;
-                  },
+                  validator: (name)=>name.userNameValidation(context),
                   prefixPadding: const EdgeInsets.only(left: 16, right: 14),
                   controller: userNameController,
                   textStyle: AppStyles.regular20White,
@@ -128,15 +117,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                   prefixIcon: SvgPicture.asset(AppAssets.userIcon),
                 ),
                 CustomTextField(
-                  validator: (phone){
-                    if(phone == null || phone.trim().isEmpty){
-                      return LocaleKeys.phone_empty.tr();
-                    }
-                    if(phone.length<11){
-                      return LocaleKeys.phone_invalid.tr(args: ['11']);
-                    }
-                    return null;
-                  },
+                  validator: (phone)=>phone.phoneValidation(context),
                   prefixPadding: const EdgeInsets.only(left: 16, right: 14),
                   controller: phoneController,
                   textStyle: AppStyles.regular20White,

@@ -67,7 +67,7 @@ class MoviePage extends StatelessWidget {
                      "discover_movies_desc".tr(),
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 15,
+                      fontSize: 18,
                     ),
                     textAlign: TextAlign.center,
                   ),

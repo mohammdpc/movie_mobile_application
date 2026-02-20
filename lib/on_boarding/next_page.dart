@@ -59,7 +59,7 @@ class NextPage extends StatelessWidget {
 
                   Text(
                     "explore_genres_desc".tr(),
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                     textAlign: TextAlign.center,
                   ),
 
