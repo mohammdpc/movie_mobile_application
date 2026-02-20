@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/core/utils/app_routes.dart';
 
 import 'package:movie/core/utils/app_utils.dart';
 import 'package:movie/core/utils/app_assets.dart';
@@ -151,6 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   function: () {
                     if (_formKey.currentState!.validate()) {
                       //todo
+                      Navigator.of(context).pushNamed(AppRoutes.updateProfileScreen);
                     }
                   },
                   text: context.tr(LocaleKeys.createAccount),
@@ -167,6 +169,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       text: context.tr(LocaleKeys.login),
                       action: () {
                         /*todo*/
+                        Navigator.of(context).pushNamed(AppRoutes.loginScreen);
                       },
                     ),
                   ],
