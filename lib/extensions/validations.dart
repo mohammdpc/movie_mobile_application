@@ -5,13 +5,13 @@ import '../lang/locale_keys.g.dart';
 extension Validations on String? {
   String? emailValidation(BuildContext context) {
     if (this == null || this!.trim().isEmpty) {
-      return context.tr(LocaleKeys.addEmail);
+      return context.tr(LocaleKeys.emailIsRequired);
     }
     final bool emailValid = RegExp(
       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
     ).hasMatch(this!);
     if (!emailValid) {
-      return context.tr(LocaleKeys.addEmail);
+      return context.tr(LocaleKeys.invalidEmail);
     }
     return null;
   }

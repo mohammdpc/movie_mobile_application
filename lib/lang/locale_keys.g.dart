@@ -14,13 +14,13 @@ abstract class  LocaleKeys {
   static const alreadyHasAnAccount = 'alreadyHasAnAccount';
   static const login = 'login';
   static const invalidEmail = 'invalidEmail';
-  static const addEmail = 'addEmail';
   static const passwordIsRequired = 'passwordIsRequired';
   static const passwordTooShort = 'passwordTooShort';
   static const passwordsDoNotMatch = 'passwordsDoNotMatch';
   static const emptyPhoneNumber = 'emptyPhoneNumber';
   static const phoneNumberIsTooShort = 'phoneNumberIsTooShort';
   static const nameIsRequired = 'nameIsRequired';
+  static const emailIsRequired = 'emailIsRequired';
   static const pick_avatar = 'pick_avatar';
   static const update_data = 'update_data';
   static const reset_password = 'reset_password';
@@ -47,6 +47,8 @@ abstract class  LocaleKeys {
   static const rate_review_desc = 'rate_review_desc';
   static const watchlist_title = 'watchlist_title';
   static const watchlist_desc = 'watchlist_desc';
+  static const forget_password = 'forget_password';
+  static const verify_email = 'verify_email';
   static const delete_account = 'delete_account';
 
 }

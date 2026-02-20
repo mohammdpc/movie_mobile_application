@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie/core/utils/app_assets.dart';
 import 'package:movie/core/utils/app_colors.dart';
+import 'package:movie/core/utils/app_routes.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/extensions/device_dimensions.dart';
 import 'package:movie/home/update_profile_page/widgets/bottom_dialog.dart';
@@ -144,7 +145,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    // todo: Reset password logic
+                    Navigator.of(context).pushNamed(AppRoutes.resetPasswordScreen);
                   },
                   child: Text(LocaleKeys.reset_password.tr(), style: AppStyles.regular20White),
                 ),

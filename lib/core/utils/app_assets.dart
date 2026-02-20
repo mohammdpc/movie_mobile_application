@@ -33,6 +33,7 @@ class AppAssets {
   static const String userIcon = "${baseUrl}user.svg";
   static const String phoneIcon = "${baseUrl}phone.svg";
   static const String logoMovie = "assets/images/logoMovie1.png";
+  static const String forgetPasswordImage = "assets/images/Forgot password-bro 1.png";
 
 
   //image

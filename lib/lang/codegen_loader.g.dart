@@ -25,14 +25,14 @@ class CodegenLoader extends AssetLoader{
   "createAccount": "إنشاء حساب",
   "alreadyHasAnAccount": "لديك حساب بالفعل؟",
   "login": "تسجيل الدخول",
-  "invalidEmail": "بريد إلكتروني غير صالح",
-  "addEmail": "الرجاء إدخال بريد إلكتروني صحيح",
+  "invalidEmail": "الرجاء إدخال بريد إلكتروني غير صالح",
   "passwordIsRequired": "كلمة المرور مطلوبة",
   "passwordTooShort": "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
   "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
   "emptyPhoneNumber": "رقم الهاتف مطلوب",
   "phoneNumberIsTooShort": "رقم الهاتف قصير جدًا",
   "nameIsRequired": "اسم المستخدم فارغ",
+  "emailIsRequired": "البريد إلكتروني المستخدم فارغ",
   "pick_avatar": "اختر صورة شخصية",
   "update_data": "تحديث البيانات",
   "reset_password": "إعادة تعيين كلمة المرور",
@@ -59,6 +59,8 @@ class CodegenLoader extends AssetLoader{
   "rate_review_desc": "شارك أفكارك حول الأفلام التي شاهدتها.\nتعمق في تفاصيل الأفلام وساعد الآخرين\nفي اكتشاف أفلام رائعة من خلال مراجعاتك.",
   "watchlist_title": "أنشئ قوائم المشاهدة",
   "watchlist_desc": "احفظ الأفلام في قائمة المشاهدة الخاصة بك\nلمتابعة ما تريد مشاهدته لاحقاً.\nاستمتع بالأفلام بمختلف الجودات والتصنيفات.",
+  "forget_password": "نسيت كلمة المرور",
+  "verify_email": "تحقق من البريد الإلكتروني",
   "delete_account": "حذف الحساب"
 };
 static const Map<String,dynamic> _en = {
@@ -72,14 +74,14 @@ static const Map<String,dynamic> _en = {
   "createAccount": "Create Account",
   "alreadyHasAnAccount": "Already Have Account ?",
   "login": "Login",
-  "addEmail": "Please enter a valid email address",
-  "invalidEmail": "Invalid Email",
+  "inValidEmail": "Please enter a valid email address",
   "passwordIsRequired": "Password is required",
   "passwordTooShort": "Password must be at least 6 characters",
   "passwordsDoNotMatch": "Passwords Do Not Match",
   "emptyPhoneNumber": "Phone number is required",
   "phoneNumberIsTooShort": "Phone number is too short",
-  "nameIsRequired": "Empty User Name",
+  "nameIsRequired": "Name field cannot be empty",
+  "emailIsRequired": "Email field cannot be empty",
   "pick_avatar": "Pick Avatar",
   "update_data": "Update Data",
   "reset_password": "Reset Password",
@@ -106,6 +108,8 @@ static const Map<String,dynamic> _en = {
   "rate_review_desc": "Share your thoughts on the movies\nyou've watched. Dive deep into film\ndetails and help others discover great\nmovies with your reviews.",
   "watchlist_title": "Create Watchlists",
   "watchlist_desc": "Save movies to your watchlist to keep\ntrack of what you want to watch next.\nEnjoy films in various qualities and genres.",
+  "forget_password": "Forget Password",
+  "verify_email": "Verify Email",
   "delete_account": "Delete Account"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
