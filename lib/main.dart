@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie/home/forget_password_page/forget_password_page.dart';
 import 'package:movie/home/update_profile_page/update_profile_page.dart';
 
 import 'core/utils/app_routes.dart';
@@ -19,8 +20,9 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       routes: {
         AppRoutes.updateProfileScreen: (context) => UpdateProfilePage(),
+        AppRoutes.forgetPasswordScreen: (context) => ForgetPasswordPage(),
       } ,
-      initialRoute: AppRoutes.updateProfileScreen,
+      initialRoute: AppRoutes.forgetPasswordScreen,
     );
   }
 }
