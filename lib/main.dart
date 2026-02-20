@@ -1,13 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:movie/home/update_profile_page/update_profile_page.dart';
-import 'Register/register_screen.dart';
 import 'core/utils/app_routes.dart';
 import 'core/utils/app_theme.dart';
 import 'lang/codegen_loader.g.dart';
 
 import 'package:movie/home/update_profile_page/update_profile_page.dart';
-import 'package:movie/Register/register_screen.dart';
+import 'package:movie/authentication/Register/register_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,9 +13,9 @@ Future<void> main() async {
   runApp(EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
-      fallbackLocale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('en'),
       assetLoader: CodegenLoader(),
-      startLocale: const Locale('en', 'US'),
+      startLocale: const Locale('en'),
       child: MyApp()));
 }
 
