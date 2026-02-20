@@ -1,12 +1,22 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/home/forget_password_page/forget_password_page.dart';
 import 'package:movie/home/update_profile_page/update_profile_page.dart';
-
+import 'authentication/Register/register_screen.dart';
+import 'authentication/login_screen/login_screen.dart';
 import 'core/utils/app_routes.dart';
 import 'core/utils/app_theme.dart';
+import 'lang/codegen_loader.g.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      assetLoader: CodegenLoader(),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,15 +25,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
       debugShowCheckedModeBanner: false,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
       routes: {
+        AppRoutes.loginScreen:(context)=>LoginScreen(),
         AppRoutes.updateProfileScreen: (context) => UpdateProfilePage(),
-        AppRoutes.forgetPasswordScreen: (context) => ForgetPasswordPage(),
+        AppRoutes.registerScreen:(context) => RegisterScreen(),
+        AppRoutes.forgetPasswordScreen:(context)=>ForgetPasswordPage()
       } ,
-      initialRoute: AppRoutes.forgetPasswordScreen,
+      initialRoute: AppRoutes.loginScreen,
     );
   }
 }
-

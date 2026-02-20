@@ -1,44 +1,56 @@
-// import 'package:flutter/material.dart';
-//
-// import '../l10n/app_localizations.dart';
-//
-// extension Validations on String {
-//   String? emailValidation(String? email, BuildContext context) {
-//     if (email == null || email.trim().isEmpty) {
-//       return AppLocalizations.of(context)!.email_empty;
-//     }
-//     final bool emailValid = RegExp(
-//       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-//     ).hasMatch(email);
-//     if (!emailValid) {
-//       return AppLocalizations.of(context)!.email_invalid;
-//     }
-//     return null;
-//   }
-//
-//   String? passwordValidation(
-//     String? password,
-//     BuildContext context, [
-//     String? confirmPassword,
-//   ]) {
-//     if (password == null || password.trim().isEmpty) {
-//       return AppLocalizations.of(context)!.password_empty;
-//     }
-//     if (confirmPassword != null) {
-//       if (password != confirmPassword) {
-//         return AppLocalizations.of(context)!.passwords_do_not_match;
-//       }
-//     }
-//     if (password.length < 6) {
-//       return AppLocalizations.of(context)!.password_invalid;
-//     }
-//     return null;
-//   }
-//
-//   String? userNameValidation(String? name, BuildContext context) {
-//     if (name == null || name.trim().isEmpty) {
-//       return AppLocalizations.of(context)!.username_empty;
-//     }
-//     return null;
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+import '../lang/locale_keys.g.dart';
+
+extension Validations on String? {
+  String? emailValidation(BuildContext context) {
+    if (this == null || this!.trim().isEmpty) {
+      return context.tr(LocaleKeys.addEmail);
+    }
+    final bool emailValid = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    ).hasMatch(this!);
+    if (!emailValid) {
+      return context.tr(LocaleKeys.addEmail);
+    }
+    return null;
+  }
+
+  String? passwordValidation(
+    BuildContext context, [
+    String? password,
+    bool confirmPassword = false,
+  ]) {
+    if (this == null || this!.trim().isEmpty) {
+      if (confirmPassword && password != null && password.isNotEmpty) {
+                return context.tr(LocaleKeys.passwordsDoNotMatch);
+      }
+      return context.tr(LocaleKeys.passwordIsRequired);
+    }
+    if (confirmPassword) {
+      if (password != this) {
+        return context.tr(LocaleKeys.passwordsDoNotMatch);
+      }
+    }
+    else if (this!.length < 6) {
+      return context.tr(LocaleKeys.passwordTooShort);
+    }
+    return null;
+  }
+
+  String? userNameValidation(BuildContext context) {
+    if (this == null || this!.trim().isEmpty) {
+      return context.tr(LocaleKeys.nameIsRequired);
+    }
+    return null;
+  }
+
+  String? phoneValidation(BuildContext context) {
+    if (this == null || this!.isEmpty) {
+      return context.tr(LocaleKeys.emptyPhoneNumber);
+    } else if (this!.length < 10) {
+      return context.tr(LocaleKeys.phoneNumberIsTooShort);
+    }
+    return null;
+  }
+}
