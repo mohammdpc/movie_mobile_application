@@ -44,6 +44,21 @@ class CodegenLoader extends AssetLoader{
   "create_one": "إنشاء حساب",
   "or": "أو",
   "login_with_google": "تسجيل الدخول عبر جوجل",
+  "next": "التالي",
+  "back": "رجوع",
+  "finish": "إنهاء",
+  "onboarding_title": "جد فيلمك المفضل \nالتالي هنا",
+  "onboarding_desc": "احصل على إمكانية الوصول إلى مكتبة ضخمة من الأفلام\nلتناسب جميع الأذواق. بالتأكيد ستنال إعجابك.",
+  "explore_now": "استكشف الآن",
+  "explore_genres_title": "استكشف جميع التصنيفات",
+  "explore_genres_desc": "اكتشف أفلاماً من كل نوع، بجميع\nالجودات المتاحة. اعثر على شيء جديد\nومثير لمشاهدته كل يوم.",
+  "discover_movies_title": "اكتشف الأفلام",
+  "discover_movies_desc": "استكشف مجموعة واسعة من الأفلام بجميع\nالجودات والتصنيفات. اعثر على فيلمك\nالمفضل التالي بكل سهولة.",
+  "start_watching_title": "ابدأ المشاهدة الآن",
+  "rate_review_title": "قيّم، راجع، وتعلّم",
+  "rate_review_desc": "شارك أفكارك حول الأفلام التي شاهدتها.\nتعمق في تفاصيل الأفلام وساعد الآخرين\nفي اكتشاف أفلام رائعة من خلال مراجعاتك.",
+  "watchlist_title": "أنشئ قوائم المشاهدة",
+  "watchlist_desc": "احفظ الأفلام في قائمة المشاهدة الخاصة بك\nلمتابعة ما تريد مشاهدته لاحقاً.\nاستمتع بالأفلام بمختلف الجودات والتصنيفات.",
   "delete_account": "حذف الحساب"
 };
 static const Map<String,dynamic> _en = {
@@ -76,6 +91,21 @@ static const Map<String,dynamic> _en = {
   "create_one": "Create One",
   "or": "OR",
   "login_with_google": "Login With Google",
+  "next": "Next",
+  "back": "Back",
+  "finish": "Finish",
+  "onboarding_title": "Find Your Next \nFavorite Movie Here",
+  "onboarding_desc": "Get access to a huge library of movies\nto suit all tastes. You will surely like it.",
+  "explore_now": "Explore Now",
+  "explore_genres_title": "Explore All Genres",
+  "explore_genres_desc": "Discover movies from every genre, in \navailable qualities. Find something new\nand exciting to watch every day.",
+  "discover_movies_title": "Discover Movies",
+  "discover_movies_desc": "Explore a vast collection of movies in all\nqualities and genres. Find your next\nfavorite film with ease.",
+  "start_watching_title": "Start Watching Now",
+  "rate_review_title": "Rate, Review, and Learn",
+  "rate_review_desc": "Share your thoughts on the movies\nyou've watched. Dive deep into film\ndetails and help others discover great\nmovies with your reviews.",
+  "watchlist_title": "Create Watchlists",
+  "watchlist_desc": "Save movies to your watchlist to keep\ntrack of what you want to watch next.\nEnjoy films in various qualities and genres.",
   "delete_account": "Delete Account"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
