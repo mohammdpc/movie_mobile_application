@@ -6,6 +6,8 @@ import 'package:movie/core/utils/app_assets.dart';
 
 import '../core/utils/app_styles.dart';
 
+import '../extensions/validations.dart';
+
 import '../widgets/lang_switcher.dart';
 import '../widgets/link_text.dart';
 import '../widgets/custom_elevated_button.dart';
@@ -23,15 +25,36 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController otherPasswordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  late final TextEditingController nameController;
+  late final TextEditingController emailController;
+  late final TextEditingController passwordController;
+  late final TextEditingController otherPasswordController;
+  late final TextEditingController phoneController;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    otherPasswordController = TextEditingController();
+    phoneController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    otherPasswordController.dispose();
+    phoneController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.tr('register'))),
+      appBar: AppBar(title: Text(context.tr(LocaleKeys.register))),
       body: Form(
         key: _formKey,
         child: Padding(
@@ -61,42 +84,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     enlargeFactor: .5,
                   ),
                 ),
-            
+
                 Text(context.tr(LocaleKeys.avatar)),
                 SizedBox(height: heightOf(12, context)),
-            
+
                 CustomTextField(
                   prefixIcon: AppAssets.identification,
                   hintText: context.tr(LocaleKeys.name),
                   verticalPadding: heightOf(11, context),
                   validator:
                       (v) =>
-                          v == null || v.isEmpty
-                              ? context.tr(LocaleKeys.nameIsRequired)
-                              : null,
+                          v.userNameValidation(context),
                   controller: nameController,
                 ),
-            
+
                 SizedBox(height: heightOf(24, context)),
-            
+
                 CustomTextField(
                   prefixIcon: AppAssets.email,
                   hintText: context.tr(LocaleKeys.email),
                   verticalPadding: heightOf(11, context),
-                  validator: (v) {
-                    RegExp checker = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                    if (v == null || v.isEmpty) {
-                      return context.tr(LocaleKeys.addEmail);
-                    } else if (!checker.hasMatch(v)) {
-                      return context.tr(LocaleKeys.invalidEmail);
-                    }
-                    return null;
-                  },
+                  validator: (v) =>v.emailValidation(context),
                   controller: emailController,
                 ),
-            
+
                 SizedBox(height: heightOf(24, context)),
-            
+
                 CustomTextField(
                   prefixIcon: AppAssets.password,
                   suffixIcon: AppAssets.eyeIcon,
@@ -105,18 +118,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   isPassword: true,
                   hintText: context.tr(LocaleKeys.password),
                   controller: passwordController,
-                  validator: (v) {
-                    if (v == null) {
-                      return context.tr(LocaleKeys.passwordIsRequired);
-                    } else if (v.length < 8) {
-                      return context.tr(LocaleKeys.passwordTooShort);
-                    }
-                    return null;
-                  },
+                  validator: (v)=>v.passwordValidation(context),
                 ),
-            
+
                 SizedBox(height: heightOf(24, context)),
-            
+
                 CustomTextField(
                   prefixIcon: AppAssets.password,
                   suffixIcon: AppAssets.eyeIcon,
@@ -125,32 +131,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   isPassword: true,
                   hintText: context.tr(LocaleKeys.confirmPassword),
                   controller: otherPasswordController,
-                  validator: (v) {
-                    if (v == null || v != passwordController.text) {
-                      return context.tr(LocaleKeys.passwordIsRequired);
-                    }
-                    return null;
-                  },
+                  validator: (v) =>v.passwordValidation(context,passwordController.text,true),
                 ),
-            
+
                 SizedBox(height: heightOf(24, context)),
-            
+
                 CustomTextField(
                   prefixIcon: AppAssets.phone,
                   hintText: context.tr(LocaleKeys.phoneNumber),
                   verticalPadding: heightOf(11, context),
                   controller: phoneController,
                   validator:
-                      (v) =>
-                          v == null || v.isEmpty
-                              ? context.tr(LocaleKeys.emptyPhoneNumber)
-                              : (v.length < 10
-                                  ? context.tr(LocaleKeys.phoneNumberIsTooShort)
-                                  : null),
+                      (v) =>v.phoneValidation(context),
                 ),
-            
+
                 SizedBox(height: heightOf(24, context)),
-            
+
                 CustomElevatedButton(
                   function: () {
                     if (_formKey.currentState!.validate()) {
@@ -160,9 +156,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   text: context.tr(LocaleKeys.createAccount),
                   textStyle: AppStyles.regular20Black,
                 ),
-            
+
                 SizedBox(height: heightOf(17.67, context)),
-            
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -175,9 +171,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ],
                 ),
-            
+
                 SizedBox(height: heightOf(18.25, context)),
-            
+
                 LangSwitcher(),
               ],
             ),

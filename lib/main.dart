@@ -13,8 +13,9 @@ Future<void> main() async {
   runApp(EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
-      fallbackLocale: const Locale('en'),
+      fallbackLocale: const Locale('en', 'US'),
       assetLoader: CodegenLoader(),
+      startLocale: const Locale('en', 'US'),
       child: MyApp()));
 }
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.updateProfileScreen: (context) => UpdateProfilePage(),
         AppRoutes.registerScreen:(context) => RegisterScreen(),
       } ,
-      initialRoute: AppRoutes.updateProfileScreen,
+      initialRoute: AppRoutes.registerScreen,
     );
   }
 }

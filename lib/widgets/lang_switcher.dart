@@ -33,7 +33,7 @@ class _LangSwitcherState extends State<LangSwitcher> {
         children: [
           InkWell(
             onTap: () async{
-              await context.setLocale(Locale('en', 'US'));
+              await context.setLocale(Locale('en'));
               currentLang = context.locale.languageCode;
               setState(() {});
             },
@@ -55,7 +55,7 @@ class _LangSwitcherState extends State<LangSwitcher> {
           InkWell(
             onTap: () async{
               //currentLang = 'ar';
-              await context.setLocale(Locale('ar', 'EG'));
+              await context.setLocale(Locale('ar'));
               currentLang = context.locale.languageCode;
               setState(() {});
             },

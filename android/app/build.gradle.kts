@@ -9,7 +9,11 @@ android {
     namespace = "com.example.movie"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
-
+    
+    // my settings
+    //ndkVersion = "29.0.14206865"
+    //buildToolsVersion = "36.0.0"
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
