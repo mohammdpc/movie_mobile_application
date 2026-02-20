@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/home/update_profile_page/update_profile_page.dart';
+import 'authentication/Register/register_screen.dart';
+import 'authentication/login_screen/login_screen.dart';
 import 'core/utils/app_routes.dart';
 import 'core/utils/app_theme.dart';
 import 'lang/codegen_loader.g.dart';
-
-import 'package:movie/home/update_profile_page/update_profile_page.dart';
-import 'package:movie/authentication/Register/register_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +15,6 @@ Future<void> main() async {
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
       assetLoader: CodegenLoader(),
-      startLocale: const Locale('en'),
       child: MyApp()));
 }
 
@@ -32,10 +31,11 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.dark,
       routes: {
+        AppRoutes.loginScreen:(context)=>LoginScreen(),
         AppRoutes.updateProfileScreen: (context) => UpdateProfilePage(),
         AppRoutes.registerScreen:(context) => RegisterScreen(),
       } ,
-      initialRoute: AppRoutes.registerScreen,
+      initialRoute: AppRoutes.loginScreen,
     );
   }
 }

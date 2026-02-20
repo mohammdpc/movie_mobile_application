@@ -36,6 +36,14 @@ class CodegenLoader extends AssetLoader{
   "pick_avatar": "اختر صورة شخصية",
   "update_data": "تحديث البيانات",
   "reset_password": "إعادة تعيين كلمة المرور",
+  "username_empty": "اسم المستخدم لا يمكن أن يكون فارغاً",
+  "phone_empty": "رقم الهاتف لا يمكن أن يكون فارغاً",
+  "phone_invalid": "يجب أن يتكون رقم الهاتف من {} أرقام على الأقل",
+  "forget_password_question": "نسيت كلمة المرور؟",
+  "dont_have_account": "ليس لديك حساب؟",
+  "create_one": "إنشاء حساب",
+  "or": "أو",
+  "login_with_google": "تسجيل الدخول عبر جوجل",
   "delete_account": "حذف الحساب"
 };
 static const Map<String,dynamic> _en = {
@@ -60,6 +68,14 @@ static const Map<String,dynamic> _en = {
   "pick_avatar": "Pick Avatar",
   "update_data": "Update Data",
   "reset_password": "Reset Password",
+  "username_empty": "Username cannot be empty",
+  "phone_empty": "Phone number cannot be empty",
+  "phone_invalid": "Phone number must be at least {} digits",
+  "forget_password_question": "Forget Password?",
+  "dont_have_account": "Don’t have an account ?",
+  "create_one": "Create One",
+  "or": "OR",
+  "login_with_google": "Login With Google",
   "delete_account": "Delete Account"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};

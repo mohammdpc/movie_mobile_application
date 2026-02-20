@@ -24,6 +24,14 @@ abstract class  LocaleKeys {
   static const pick_avatar = 'pick_avatar';
   static const update_data = 'update_data';
   static const reset_password = 'reset_password';
+  static const username_empty = 'username_empty';
+  static const phone_empty = 'phone_empty';
+  static const phone_invalid = 'phone_invalid';
+  static const forget_password_question = 'forget_password_question';
+  static const dont_have_account = 'dont_have_account';
+  static const create_one = 'create_one';
+  static const or = 'or';
+  static const login_with_google = 'login_with_google';
   static const delete_account = 'delete_account';
 
 }

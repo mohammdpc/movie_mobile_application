@@ -13,7 +13,7 @@ class AppAssets {
   static const String heart = '${iconsBaseUrl}heart.svg';
   static const String home = '${iconsBaseUrl}home.svg';
   static const String identification = '${iconsBaseUrl}Identification.svg';
-  static const String lr = '${iconsBaseUrl}LR.svg';
+  static const String en = '${iconsBaseUrl}LR.svg';
   static const String profile = '${iconsBaseUrl}profile.svg';
   static const String search = '${iconsBaseUrl}search.svg';
   static const String star = '${iconsBaseUrl}star.svg';
@@ -32,6 +32,7 @@ class AppAssets {
   static const String gamer9Icon = "${baseUrl}gamer9.png";
   static const String userIcon = "${baseUrl}user.svg";
   static const String phoneIcon = "${baseUrl}phone.svg";
+  static const String logoMovie = "assets/images/logoMovie1.png";
 
 
   //image

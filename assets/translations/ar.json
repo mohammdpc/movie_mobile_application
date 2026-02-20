@@ -20,5 +20,13 @@
   "pick_avatar": "اختر صورة شخصية",
   "update_data": "تحديث البيانات",
   "reset_password": "إعادة تعيين كلمة المرور",
+  "username_empty": "اسم المستخدم لا يمكن أن يكون فارغاً",
+  "phone_empty": "رقم الهاتف لا يمكن أن يكون فارغاً",
+  "phone_invalid": "يجب أن يتكون رقم الهاتف من {} أرقام على الأقل",
+  "forget_password_question": "نسيت كلمة المرور؟",
+  "dont_have_account": "ليس لديك حساب؟",
+  "create_one": "إنشاء حساب",
+  "or": "أو",
+  "login_with_google": "تسجيل الدخول عبر جوجل",
   "delete_account": "حذف الحساب"
 }

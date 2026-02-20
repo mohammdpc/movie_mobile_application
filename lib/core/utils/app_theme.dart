@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie/core/utils/app_styles.dart';
 
 import 'app_colors.dart';
 import 'app_styles.dart';
@@ -22,7 +23,11 @@ class AppTheme {
       unselectedItemColor: AppColors.white,
       selectedItemColor: AppColors.accentYellow,
     ),
-    textTheme: TextTheme(),
+    textTheme: TextTheme(
+      headlineMedium: AppStyles.regular15White,
+     titleLarge: AppStyles.regular15White,
+
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
