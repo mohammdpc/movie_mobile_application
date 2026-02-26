@@ -28,17 +28,19 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController nameController;
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
   late final TextEditingController otherPasswordController;
   late final TextEditingController phoneController;
+
   String? emailError;
   String? passwordError;
   String? error;
 
-  late final CarouselController avatarController;
+  int avatarIndex = 0;
 
   @override
   void initState() {
@@ -48,7 +50,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     passwordController = TextEditingController();
     otherPasswordController = TextEditingController();
     phoneController = TextEditingController();
-    avatarController = CarouselController();
   }
 
   @override
@@ -58,7 +59,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     passwordController.dispose();
     otherPasswordController.dispose();
     phoneController.dispose();
-    avatarController.dispose();
     super.dispose();
   }
 
@@ -91,6 +91,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     viewportFraction: .33,
                     enlargeCenterPage: true,
                     enlargeFactor: .5,
+                    onPageChanged: (index, reason){
+                      setState(() {
+                        avatarIndex = index;
+                      });
+                    }
                   ),
                 ),
 
@@ -162,6 +167,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 CustomElevatedButton(
                   function: () async {
                     if (_formKey.currentState!.validate()) {
+                      showDialog(
+                        useSafeArea: true,
+                        fullscreenDialog: false,
+                        context: context,
+                        builder: (context) => CircularProgressIndicator(
+                          color: AppColors.accentYellow,
+                        ),
+                      );
                       //todo
                       Map<String, String?> validation = await register(
                         context: context,
@@ -169,23 +182,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         password: passwordController.text,
                         userName: nameController.text,
                         phone: phoneController.text,
-                        avatar: avatarController.initialItem,
+                        avatar: avatarIndex,
                       );
                       emailError = validation['email'];
                       passwordError = validation['password'];
                       error = validation['error'];
                       if (error != null && error!.isNotEmpty) {
+                        Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text(error!,style: AppStyles.regular15White,),
+                            content: Text(
+                              error!,
+                              style: AppStyles.regular15White,
+                            ),
                             backgroundColor: AppColors.darkGray,
                             behavior: SnackBarBehavior.floating,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadiusGeometry.all(Radius.circular(16)),
+                              borderRadius: BorderRadiusGeometry.all(
+                                Radius.circular(16),
+                              ),
                             ),
                           ),
                         );
                       } else if (_formKey.currentState!.validate()) {
+                        Navigator.pop(context);
                         Navigator.of(
                           context,
                         ).pushReplacementNamed(AppRoutes.updateProfileScreen);
@@ -206,7 +226,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       text: context.tr(LocaleKeys.login),
                       action: () {
                         /*todo*/
-                        Navigator.of(context).pushReplacementNamed(AppRoutes.loginScreen);
+                        Navigator.of(
+                          context,
+                        ).pushReplacementNamed(AppRoutes.loginScreen);
                       },
                     ),
                   ],
