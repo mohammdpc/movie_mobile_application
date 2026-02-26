@@ -171,8 +171,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         useSafeArea: true,
                         fullscreenDialog: false,
                         context: context,
-                        builder: (context) => CircularProgressIndicator(
-                          color: AppColors.accentYellow,
+                        builder: (context) => Center(
+                          child: SizedBox(
+                            width: widthOf(50, context),
+                            height: widthOf(50, context),
+                            child: CircularProgressIndicator(
+                              color: AppColors.accentYellow,
+                            ),
+                          ),
                         ),
                       );
                       //todo
