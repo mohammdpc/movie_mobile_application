@@ -14,7 +14,7 @@ class AppAssets {
   static const String home = '${iconsBaseUrl}home.svg';
   static const String identification = '${iconsBaseUrl}Identification.svg';
   static const String en = '${iconsBaseUrl}LR.svg';
-  static const String profile = '${iconsBaseUrl}profile.svg';
+  static const String profile = '${iconsBaseUrl}Profiel.svg';
   static const String search = '${iconsBaseUrl}search.svg';
   static const String star = '${iconsBaseUrl}star.svg';
   static const String email = '${iconsBaseUrl}email.svg';

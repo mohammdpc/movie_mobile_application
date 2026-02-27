@@ -60,6 +60,7 @@ class CodegenLoader extends AssetLoader{
   "watchlist_desc": "احفظ الأفلام في قائمة المشاهدة الخاصة بك لمتابعة ما تريد مشاهدته لاحقاً. استمتع بالأفلام بمختلف الجودات والتصنيفات.",
   "forget_password": "نسيت كلمة المرور",
   "verify_email": "تحقق من البريد الإلكتروني",
+  "try_again": "حاول مجددا",
   "delete_account": "حذف الحساب"
 };
 static const Map<String,dynamic> _en = {
@@ -108,6 +109,7 @@ static const Map<String,dynamic> _en = {
   "watchlist_desc": "Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.",
   "forget_password": "Forget Password",
   "verify_email": "Verify Email",
+  "try_again": "Try Again",
   "delete_account": "Delete Account"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};

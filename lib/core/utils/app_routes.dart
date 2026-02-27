@@ -5,6 +5,7 @@ class AppRoutes{
   static const String onBoardingScreen = "on_boarding_screen";
   static const String resetPasswordScreen = "forget_password_screen";
   static const String homeScreen = "home_screen";
+  static const String mainScreen = "main_screen";
 
 
 }
