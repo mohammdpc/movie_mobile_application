@@ -16,14 +16,13 @@ extension Validations on String? {
     return null;
   }
 
-  String? passwordValidation(
-    BuildContext context, [
+  String? passwordValidation(BuildContext context, [
     String? password,
     bool confirmPassword = false,
   ]) {
     if (this == null || this!.trim().isEmpty) {
       if (confirmPassword && password != null && password.isNotEmpty) {
-                return context.tr(LocaleKeys.passwordsDoNotMatch);
+        return context.tr(LocaleKeys.passwordsDoNotMatch);
       }
       return context.tr(LocaleKeys.passwordIsRequired);
     }
@@ -39,17 +38,18 @@ extension Validations on String? {
   }
 
   String? userNameValidation(BuildContext context) {
-    if (this == null || this!.trim().isEmpty) {
-      return context.tr(LocaleKeys.nameIsRequired);
+    if(this == null || this!.trim().isEmpty){
+      return LocaleKeys.nameIsRequired.tr();
     }
     return null;
   }
 
   String? phoneValidation(BuildContext context) {
-    if (this == null || this!.isEmpty) {
-      return context.tr(LocaleKeys.emptyPhoneNumber);
-    } else if (this!.length < 10) {
-      return context.tr(LocaleKeys.phoneNumberIsTooShort);
+    if (this == null || this!.trim().isEmpty) {
+      return LocaleKeys.phone_empty.tr();
+    }
+    if (this!.length < 11) {
+      return LocaleKeys.phone_invalid.tr(args: ['11']);
     }
     return null;
   }

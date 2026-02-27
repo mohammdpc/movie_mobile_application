@@ -41,7 +41,8 @@ class LastPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "start_watching_title".tr(),                    style: TextStyle(
+                    "start_watching_title".tr(),
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
