@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movie/core/services/profile_service.dart';
 import 'package:movie/core/utils/app_assets.dart';
 import 'package:movie/core/utils/app_colors.dart';
-import 'package:movie/core/utils/app_routes.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/extensions/device_dimensions.dart';
-import 'package:movie/extensions/validations.dart';
 import 'package:movie/home/update_profile_page/widgets/bottom_dialog.dart';
 import 'package:movie/lang/locale_keys.g.dart';
 import 'package:movie/widgets/custom_elevated_button.dart';
@@ -20,24 +19,82 @@ class UpdateProfilePage extends StatefulWidget {
 }
 
 class _UpdateProfilePageState extends State<UpdateProfilePage> {
-  TextEditingController userNameController = TextEditingController(
-    text: "John Safwat",
-  );
-  TextEditingController phoneController = TextEditingController(
-    text: "01200000000",
-  );
+  final TextEditingController userNameController =
+      TextEditingController(text: "John Safwat");
+  final TextEditingController phoneController =
+      TextEditingController(text: "01200000000");
+
   int currentIconIndex = 2;
   final _formKey = GlobalKey<FormState>();
+
+  bool _loading = true;
+  bool _saving = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfile();
+  }
+
+  Future<void> _loadProfile() async {
+    try {
+      final data = await ProfileService.instance.getProfile();
+      if (data != null) {
+        userNameController.text = (data['name'] ?? userNameController.text).toString();
+        phoneController.text = (data['phone'] ?? phoneController.text).toString();
+
+        final avatar = data['avatarIndex'];
+        if (avatar is int) currentIconIndex = avatar;
+      }
+    } catch (e) {
+      // ممكن تعرض SnackBar لو تحب
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  Future<void> _saveProfile() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _saving = true);
+    try {
+      await ProfileService.instance.updateProfile(
+        name: userNameController.text.trim(),
+        phone: phoneController.text.trim(),
+        avatarIndex: currentIconIndex,
+      );
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(LocaleKeys.update_data.tr())),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Error saving data")),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
+  }
+
   @override
   void dispose() {
-    // TODO: implement dispose
-    super.dispose();
     userNameController.dispose();
     phoneController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_loading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: ListView(
@@ -51,30 +108,33 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         children: [
           CustomElevatedButton(
             function: () {
-              // todo: Delete account logic
+              // مش مطلوب في حالتك (مفيش Login)
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Delete account not used without login")),
+              );
             },
             text: LocaleKeys.delete_account.tr(),
             textStyle: AppStyles.regular20White,
             backgroundColor: AppColors.red,
             borderColor: AppColors.red,
           ),
-          SizedBox(height: context.height * 0.0214,),
+          SizedBox(height: context.height * 0.0214),
           CustomElevatedButton(
-            function: () {
-              if (_formKey.currentState!.validate()) {
-                print("Form is valid! Proceeding...");
-              } else {
-                print("Form has errors.");
-              }
-              // todo: Update account logic
-            },
-            text: LocaleKeys.update_data.tr(),
+            function: _saving ? () {} : _saveProfile,
+            text: _saving ? "..." : LocaleKeys.update_data.tr(),
             textStyle: AppStyles.regular20Black,
           ),
         ],
       ),
       appBar: AppBar(
-        title: Text(LocaleKeys.pick_avatar.tr(), style: AppStyles.regular16AccentYellow),
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: Icon(Icons.arrow_back_rounded, color: AppColors.accentYellow),
+        ),
+        title: Text(
+          LocaleKeys.pick_avatar.tr(),
+          style: AppStyles.regular16AccentYellow,
+        ),
       ),
       body: Form(
         key: _formKey,
@@ -92,13 +152,16 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    BottomDialog.showGridBottomDialog(context, currentIconIndex, (int index,)
-                    {
-                      setState(() {
-                        currentIconIndex = index + 1;
-                        Navigator.of(context).pop();
-                      });
-                    });
+                    BottomDialog.showGridBottomDialog(
+                      context,
+                      currentIconIndex,
+                      (int index) {
+                        setState(() {
+                          currentIconIndex = index + 1;
+                          Navigator.of(context).pop();
+                        });
+                      },
+                    );
                   },
                   child: Center(
                     child: Image.asset(
@@ -107,9 +170,14 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 0),
+                const SizedBox(height: 0),
                 CustomTextField(
-                  validator: (name)=>name.userNameValidation(context),
+                  validator: (name) {
+                    if (name == null || name.trim().isEmpty) {
+                      return LocaleKeys.username_empty.tr();
+                    }
+                    return null;
+                  },
                   prefixPadding: const EdgeInsets.only(left: 16, right: 14),
                   controller: userNameController,
                   textStyle: AppStyles.regular20White,
@@ -117,7 +185,15 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                   prefixIcon: SvgPicture.asset(AppAssets.userIcon),
                 ),
                 CustomTextField(
-                  validator: (phone)=>phone.phoneValidation(context),
+                  validator: (phone) {
+                    if (phone == null || phone.trim().isEmpty) {
+                      return LocaleKeys.phone_empty.tr();
+                    }
+                    if (phone.length < 11) {
+                      return LocaleKeys.phone_invalid.tr(args: ['11']);
+                    }
+                    return null;
+                  },
                   prefixPadding: const EdgeInsets.only(left: 16, right: 14),
                   controller: phoneController,
                   textStyle: AppStyles.regular20White,
@@ -126,9 +202,15 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed(AppRoutes.resetPasswordScreen);
+                    // مش مطلوب بدون Login
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Reset password يحتاج Login (Firebase Auth)")),
+                    );
                   },
-                  child: Text(LocaleKeys.reset_password.tr(), style: AppStyles.regular20White),
+                  child: Text(
+                    LocaleKeys.reset_password.tr(),
+                    style: AppStyles.regular20White,
+                  ),
                 ),
               ],
             ),
