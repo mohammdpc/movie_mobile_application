@@ -139,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     function: () {
                       //المفروض نخليه يدخب بجوجل هتتعمل ب api باين:todo
                       //just for testing
-                      Navigator.of(context).pushNamed(AppRoutes.updateProfileScreen);
+                      Navigator.of(context).pushNamed(AppRoutes.mainScreen);
                     },
                     icon: SvgPicture.asset(AppAssets.googleIcon),
                     text: 'login_with_google'.tr(),

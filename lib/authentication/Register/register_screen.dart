@@ -214,7 +214,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Navigator.pop(context);
                         Navigator.of(
                           context,
-                        ).pushReplacementNamed(AppRoutes.updateProfileScreen);
+                        ).pushReplacementNamed(AppRoutes.mainScreen);
                       }
                     }
                   },

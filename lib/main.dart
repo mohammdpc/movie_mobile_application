@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.mainScreen:(context) => MainPage(),
 
       } ,
-      initialRoute: AppRoutes.mainScreen,
+      initialRoute: AppRoutes.onBoardingScreen,
     );
   }
 }
