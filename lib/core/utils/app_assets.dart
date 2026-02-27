@@ -14,7 +14,7 @@ class AppAssets {
   static const String home = '${iconsBaseUrl}home.svg';
   static const String identification = '${iconsBaseUrl}Identification.svg';
   static const String en = '${iconsBaseUrl}LR.svg';
-  static const String profile = '${iconsBaseUrl}profile.svg';
+  static const String profile = '${iconsBaseUrl}Profiel.svg';
   static const String search = '${iconsBaseUrl}search.svg';
   static const String star = '${iconsBaseUrl}star.svg';
   static const String email = '${iconsBaseUrl}email.svg';
@@ -32,6 +32,8 @@ class AppAssets {
   static const String gamer9Icon = "${baseUrl}gamer9.png";
   static const String userIcon = "${baseUrl}user.svg";
   static const String phoneIcon = "${baseUrl}phone.svg";
+  static const String availableNow = "${baseUrl}Available Now.png";
+  static const String watchNow = "${baseUrl}Watch Now.png";
   static const String logoMovie = "assets/images/logoMovie1.png";
   static const String forgetPasswordImage = "assets/images/Forgot password-bro 1.png";
 

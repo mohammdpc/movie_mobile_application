@@ -24,19 +24,21 @@ class ForgetPasswordPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16 ),
-        child: Column(
-            spacing: 20,
-          children: [
-            Image.asset(AppAssets.forgetImage,width: context.width,fit: BoxFit.contain,),
-
-            CustomTextField(prefixPadding:EdgeInsets.only(right: 5,left: 9),hintText: context.tr(LocaleKeys.email),
-              prefixIcon:Image.asset(AppAssets.emailIconPng),
-              textStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
-            CustomElevatedButton(function: (){
-              //todo :Firebase reset password
-            }, text: context.tr(LocaleKeys.verify_email),
-              textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),)
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+              spacing: 20,
+            children: [
+              Image.asset(AppAssets.forgetImage,width: context.width,fit: BoxFit.contain,),
+          
+              CustomTextField(prefixPadding:EdgeInsets.only(right: 5,left: 9),hintText: context.tr(LocaleKeys.email),
+                prefixIcon:Image.asset(AppAssets.emailIconPng),
+                textStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
+              CustomElevatedButton(function: (){
+                //todo :Firebase reset password
+              }, text: context.tr(LocaleKeys.verify_email),
+                textStyle: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),)
+            ],
+          ),
         ),
       ),
     );

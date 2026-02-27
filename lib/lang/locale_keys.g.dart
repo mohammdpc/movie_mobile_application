@@ -48,9 +48,7 @@ abstract class  LocaleKeys {
   static const watchlist_desc = 'watchlist_desc';
   static const forget_password = 'forget_password';
   static const verify_email = 'verify_email';
+  static const try_again = 'try_again';
   static const delete_account = 'delete_account';
-
-
-
 
 }
