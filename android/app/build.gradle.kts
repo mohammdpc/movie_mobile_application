@@ -1,5 +1,8 @@
 plugins {
     id("com.android.application")
+    // START: FlutterFire Configuration
+    id("com.google.gms.google-services")
+    // END: FlutterFire Configuration
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
@@ -8,11 +11,11 @@ plugins {
 android {
     namespace = "com.example.movie"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973"
+    //ndkVersion = "27.0.12077973"
     
     // my settings
-    //ndkVersion = "29.0.14206865"
-    //buildToolsVersion = "36.0.0"
+    ndkVersion = "29.0.14206865"
+    buildToolsVersion = "36.0.0"
     
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
