@@ -9,7 +9,7 @@ import 'authentication/login_screen/login_screen.dart';
 import 'core/utils/app_routes.dart';
 import 'core/utils/app_theme.dart';
 import 'lang/codegen_loader.g.dart';
-
+//reset the branch
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
