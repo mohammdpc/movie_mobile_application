@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie/core/utils/app_assets.dart';
 import 'package:movie/core/utils/app_colors.dart';
@@ -12,6 +13,8 @@ import 'package:movie/lang/locale_keys.g.dart';
 import 'package:movie/widgets/custom_elevated_button.dart';
 import 'package:movie/widgets/custom_text_field.dart';
 
+import 'package:movie/authentication/auth logic/auth_logic.dart';
+
 class UpdateProfilePage extends StatefulWidget {
   UpdateProfilePage({super.key});
 
@@ -20,13 +23,9 @@ class UpdateProfilePage extends StatefulWidget {
 }
 
 class _UpdateProfilePageState extends State<UpdateProfilePage> {
-  TextEditingController userNameController = TextEditingController(
-    text: "John Safwat",
-  );
-  TextEditingController phoneController = TextEditingController(
-    text: "01200000000",
-  );
-  int currentIconIndex = 2;
+  late TextEditingController userNameController;
+  late TextEditingController phoneController;
+
   final _formKey = GlobalKey<FormState>();
   @override
   void dispose() {
@@ -38,6 +37,13 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    userNameController = TextEditingController(
+    text: context.read<AuthLogic>().authenticatedState!.user.name,
+    );
+    phoneController = TextEditingController(
+      text: context.read<AuthLogic>().authenticatedState!.user.phone
+    );
+    int currentIconIndex = context.read<AuthLogic>().authenticatedState!.user.avatarIndex;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: ListView(

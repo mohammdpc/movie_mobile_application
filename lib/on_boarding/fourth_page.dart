@@ -28,9 +28,7 @@ class FourthPage extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 colors: [
                   Colors.transparent,
-                  Color.fromARGB(120, 0, 0, 0),
-                  Color.fromARGB(200, 0, 0, 0),
-                  Colors.black,
+                  Color(0xff601321),
                 ],
               ),
             ),

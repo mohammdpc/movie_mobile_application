@@ -11,27 +11,27 @@ class LastPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-       children: [
-         SizedBox.expand(
-           child: Image.asset("assets/images/1917_-_Sam_Mendes.png",
-             fit: BoxFit.cover,),
+        children: [
+          SizedBox.expand(
+            child: Image.asset(
+              "assets/images/1917_large.png",
+              fit: BoxFit.fitWidth,
+              alignment: AlignmentGeometry.topCenter,
+            ),
           ),
-       Container(
-         decoration: BoxDecoration(
-          gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-         colors: [
-         Colors.transparent,
-          Color.fromARGB(120, 0, 0, 0),
-         Color.fromARGB(200, 0, 0, 0),
-                  Colors.black,],),
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.transparent, Color(0xff2A2C30)],
+              ),
             ),
           ),
 
-    Align(
-     alignment: Alignment.bottomCenter,
-     child: Container(
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               decoration: BoxDecoration(
                 color: Colors.black,
@@ -63,10 +63,14 @@ class LastPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.loginScreen, (route) => false);
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          AppRoutes.loginScreen,
+                          (route) => false,
+                        );
                       },
                       child: Text(
-                        "finish".tr(),                        style: TextStyle(
+                        "finish".tr(),
+                        style: TextStyle(
                           color: Color(0xff121312),
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
@@ -94,7 +98,8 @@ class LastPage extends StatelessWidget {
                         );
                       },
                       child: Text(
-                        "back".tr(),                        style: TextStyle(
+                        "back".tr(),
+                        style: TextStyle(
                           color: Color(0xffF6BD00),
                           fontWeight: FontWeight.w600,
                           fontSize: 18,
