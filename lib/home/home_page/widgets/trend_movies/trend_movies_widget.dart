@@ -21,9 +21,16 @@ class TrendMoviesWidget extends StatefulWidget {
 }
 
 class _TrendMoviesWidgetState extends State<TrendMoviesWidget> {
-  TrendMoviesViewModel viewModel = TrendMoviesViewModel(
-    moviesRepository: injectMoviesRepository(),
-  );
+  late TrendMoviesViewModel viewModel;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    viewModel = context.read<TrendMoviesViewModel>();
+    viewModel.getMovies();
+  }
+  // TrendMoviesViewModel viewModel = TrendMoviesViewModel(
+  //   moviesRepository: injectMoviesRepository(),
+  // );
   int currentIndex = 0;
   bool isLoaded = false;
   final CarouselSliderController _controller = CarouselSliderController();
@@ -32,7 +39,7 @@ class _TrendMoviesWidgetState extends State<TrendMoviesWidget> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    viewModel.getMovies();
+
   }
 
   @override
