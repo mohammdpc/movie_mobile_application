@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/di.dart';
 import 'package:movie/extensions/device_dimensions.dart';
 import 'package:movie/home/home_page/widgets/trend_movies/widgets/back_ground_image.dart';
 import 'package:movie/home/home_page/widgets/trend_movies/widgets/back_ground_image_shadow.dart';
@@ -69,14 +68,18 @@ class _TrendMoviesWidgetState extends State<TrendMoviesWidget> {
                   },
                 ),
                 itemBuilder: (BuildContext context, int index, int realIndex) {
-                  return MovieChildWidget(
-                    onPress: () {
-                      if (currentIndex != index) {
-                        _controller.animateToPage(index);
-                      }
-                    },
-                    imgPath: state.moviesList[index].mediumCoverImage ?? "",
-                    rating: "${state.moviesList[index].rating}", top: 11, left: 9,
+                  return SizedBox(
+                    height: context.calcOnHeight(351),
+                    width: context.calcOnWidth(234),
+                    child: MovieChildWidget(
+                      onPress: () {
+                        if (currentIndex != index) {
+                          _controller.animateToPage(index);
+                        }
+                      },
+                      imgPath: state.moviesList[index].mediumCoverImage ?? "",
+                      rating: "${state.moviesList[index].rating}", top: 11, left: 9,
+                    ),
                   );
                 },
               ),

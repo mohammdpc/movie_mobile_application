@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class BackGroundImage extends StatelessWidget {
@@ -6,16 +7,23 @@ class BackGroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(imgPath,fit:BoxFit.fill ,width: double.infinity,
-      loadingBuilder: (context, child, loadingProgress) {
-        if(loadingProgress == null){
-          return child;
-        }
-        return Center(child: CircularProgressIndicator(),);
-      },
-      errorBuilder: (context, error, stackTrace) {
-        return const Icon(Icons.broken_image);
-      },
+    return CachedNetworkImage(
+      imageUrl: imgPath,
+      placeholder: (context, url) => CircularProgressIndicator(),
+      errorWidget: (context, url, error) => Icon(Icons.error),
     );
+
+
+    //   Image.network(imgPath,fit:BoxFit.fill ,width: double.infinity,
+    //   loadingBuilder: (context, child, loadingProgress) {
+    //     if(loadingProgress == null){
+    //       return child;
+    //     }
+    //     return Center(child: CircularProgressIndicator(),);
+    //   },
+    //   errorBuilder: (context, error, stackTrace) {
+    //     return const Icon(Icons.broken_image);
+    //   },
+    // );
   }
 }

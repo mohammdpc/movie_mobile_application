@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/home/home_page/widgets/trend_movies/widgets/rating_container.dart';
 
@@ -17,18 +18,24 @@ class MovieChildWidget extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                imgPath,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if(loadingProgress == null){
-                    return child;
-                  }
-                  return SizedBox();
-                },
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.broken_image);
-                },
+              child: CachedNetworkImage(
+                imageUrl: imgPath,
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
+
+              // Image.network(
+              //   imgPath,
+              //   loadingBuilder: (context, child, loadingProgress) {
+              //     if(loadingProgress == null){
+              //       return child;
+              //     }
+              //     return SizedBox();
+              //   },
+              //   errorBuilder: (context, error, stackTrace) {
+              //     return const Icon(Icons.broken_image);
+              //   },
+              // ),
             ),
             Positioned(
                 top:top,
