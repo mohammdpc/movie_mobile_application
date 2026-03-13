@@ -7,14 +7,14 @@ import '../../../../../models/movie_response.dart';
 class GenreViewModel extends Cubit<GenreState>{
   final MoviesRepository moviesRepository;
   GenreViewModel({required this.moviesRepository}):super(GenreLoadingState());
-  Future<void> getMoviesByGenre({int limit = 20}) async {
+  Future<void> getMoviesByGenre({int limit = 20,}) async {
     List<List<Movies>> moviesGroups = [];
     try{
       emit(GenreLoadingState());
       // var response = await moviesRepository.getMovies(genre: genre,sortBy:"like_count");
 
       for(int i = 0;i<ImdbGenres.all.length;i++){
-        var response = await moviesRepository.getMovies(genre: ImdbGenres.all[i],sortBy:"like_count",limit: limit.toString());
+        var response = await moviesRepository.getMovies(genre: ImdbGenres.all[i],sortBy:"like_count",limit: limit.toString(),);
         if(response.status == "error"){
           emit(GenreErrorState(errorMessage: response.statusMessage!));
           return;

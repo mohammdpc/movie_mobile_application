@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/authentication/reset_password/reset_password.dart';
-import 'package:movie/home/forget_password_page/forget_password_page.dart';
+
 import 'package:movie/home/main_page.dart';
 import 'package:movie/home/update_profile_page/update_profile_page.dart';
 import 'package:movie/on_boarding/onboarding_screen.dart';

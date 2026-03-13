@@ -13,6 +13,7 @@ class ApiManger {
     String? orderBy,
     String? genre,
     String? limit,
+    String? queryTerm
   }) async {
     Map<String, String> queryParameters = {};
     if (sortBy != null) {
@@ -26,6 +27,9 @@ class ApiManger {
     }
     if (limit != null) {
       queryParameters["limit"] = limit;
+    }
+    if(queryTerm != null){
+      queryParameters["query_term"] = queryTerm;
     }
     Uri url = Uri.https(
       ApiConstants.baseUrl,
