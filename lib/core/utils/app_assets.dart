@@ -36,7 +36,7 @@ class AppAssets {
   static const String watchNow = "${baseUrl}Watch Now.png";
   static const String logoMovie = "assets/images/logoMovie1.png";
   static const String forgetPasswordImage = "assets/images/Forgot password-bro 1.png";
-
+  static const String playButton = "assets/icons/play_button.svg";
   static const arrowIcon = "${baseUrl}ArrowBack.png";
   static const forgetImage = "${baseUrl}Forgotpassword.png";
   static const emailIconPng = "${baseUrl}emailIcon.png";

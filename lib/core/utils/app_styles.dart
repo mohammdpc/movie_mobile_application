@@ -38,4 +38,11 @@ class AppStyles{
     fontWeight: FontWeight.w400,
     color: AppColors.accentYellow,
   );
+  static final TextStyle bold24White = GoogleFonts.roboto(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+    decoration: TextDecoration.none,
+  );
+
 }
