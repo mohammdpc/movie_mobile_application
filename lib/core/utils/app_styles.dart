@@ -45,4 +45,17 @@ class AppStyles{
     decoration: TextDecoration.none,
   );
 
+  static final TextStyle bold20Yellow = GoogleFonts.roboto(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.accentYellow,
+    decoration: TextDecoration.none,
+  );
+  static final TextStyle bold20Black = GoogleFonts.roboto(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.black,
+    decoration: TextDecoration.none,
+  );
+
 }
