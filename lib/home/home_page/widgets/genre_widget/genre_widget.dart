@@ -4,6 +4,7 @@ import 'package:movie/di.dart';
 import 'package:movie/extensions/device_dimensions.dart';
 import 'package:movie/home/home_page/widgets/genre_widget/cubit/genre_state.dart';
 import 'package:movie/home/home_page/widgets/genre_widget/cubit/genre_view_model.dart';
+import 'package:movie/home/movie_details/movie_details_screen.dart';
 import 'package:movie/home/widgets/loading_widget.dart';
 import 'package:movie/home/widgets/main_error_widget.dart';
 import '../../../../models/movie_response.dart';
@@ -43,7 +44,9 @@ class _GenreWidgetState extends State<GenreWidget> {
             shrinkWrap: true,
             itemCount: widget.moviesList.length,
             itemBuilder: (context, index) {
-              return MovieChildWidget(onPress: (){}, imgPath: widget.moviesList[index].mediumCoverImage??"", rating: "${widget.moviesList[index].rating}", top: 13, left: 14);
+              return MovieChildWidget(onPress: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>MovieDetailsScreen(movieID: widget.moviesList[index].id.toString())));
+              }, imgPath: widget.moviesList[index].mediumCoverImage??"", rating: "${widget.moviesList[index].rating}", top: 13, left: 14);
             }, separatorBuilder: (BuildContext context, int index) {
             return SizedBox(width: context.calcOnWidth(16),);
           },),

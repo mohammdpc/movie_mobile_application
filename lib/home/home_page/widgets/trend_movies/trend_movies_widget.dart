@@ -11,6 +11,7 @@ import 'package:movie/home/widgets/main_error_widget.dart';
 import '../../../../core/utils/app_assets.dart';
 import 'cubit/trend_movies_state.dart';
 import 'cubit/trend_movies_view_model.dart';
+import 'package:movie/home/movie_details/movie_details_screen.dart';
 
 class TrendMoviesWidget extends StatefulWidget {
   const TrendMoviesWidget({super.key});
@@ -75,6 +76,9 @@ class _TrendMoviesWidgetState extends State<TrendMoviesWidget> {
                       onPress: () {
                         if (currentIndex != index) {
                           _controller.animateToPage(index);
+                        } else{
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MovieDetailsScreen(movieID: state.moviesList[index].id.toString())));
+
                         }
                       },
                       imgPath: state.moviesList[index].mediumCoverImage ?? "",
