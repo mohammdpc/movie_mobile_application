@@ -6,7 +6,7 @@ class MoviesRepositoryImpl implements MoviesRepository{
   MoviesRemoteDataSource remoteDataSource;
   MoviesRepositoryImpl({required this.remoteDataSource});
   @override
-  Future<MovieResponse> getMovies({String? sortBy,String? orderBy,String? genre,String? limit}) {
-    return remoteDataSource.getMovies(sortBy:sortBy,orderBy: orderBy,genre: genre,limit: limit );
+  Future<MovieResponse> getMovies({String? sortBy,String? orderBy,String? genre,String? limit,String? queryTerm}) {
+    return remoteDataSource.getMovies(sortBy:sortBy,orderBy: orderBy,genre: genre,limit: limit ,queryTerm: queryTerm);
   }
 }
