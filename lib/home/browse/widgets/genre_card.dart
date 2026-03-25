@@ -18,7 +18,9 @@ class GenreCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: selected ? AppColors.accentYellow : AppColors.transparentColor,
         borderRadius: BorderRadius.all(Radius.circular(16)),
-        border: BoxBorder.all(width: 2, color: AppColors.accentYellow),
+        border: Border.all(
+            width: 2, color: AppColors.accentYellow
+        ),
       ),
       child: Center(
         child: Text(

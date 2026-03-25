@@ -21,7 +21,7 @@ class CastCard extends StatelessWidget {
         spacing: widthOf(10, context),
         children: [
           ClipRRect(
-            borderRadius: BorderRadiusGeometry.all(Radius.circular(10)),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
             child: image== null||image == ''?Icon(Icons.person,size: widthOf(70, context),):Image.network(image!,fit: BoxFit.fitHeight,),
           ),
           Expanded(

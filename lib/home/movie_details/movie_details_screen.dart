@@ -72,8 +72,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            begin: AlignmentGeometry.topCenter,
-                            end: AlignmentGeometry.bottomCenter,
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
                             colors: [
                               AppColors.transparentColor,
                               AppColors.black,
