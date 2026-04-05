@@ -162,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> implements LoginNavigator{
                       function: () async {
                         await viewModel.signInWithGoogle();
                       },
-                      icon: SvgPicture.asset(AppAssets.googleIcon),
+                      beginIcon: SvgPicture.asset(AppAssets.googleIcon),
                       text: 'login_with_google'.tr(),
                       textStyle: AppStyles.regular20Black,
 

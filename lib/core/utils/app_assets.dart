@@ -6,9 +6,11 @@ class AppAssets {
   static const String eyeIcon = "${iconsBaseUrl}eye.svg";
   static const String googleIcon = "${iconsBaseUrl}googleIcon.svg";
   static const String clock = '${iconsBaseUrl}clock.svg';
+  static const String exit = '${iconsBaseUrl}exit.svg';
+  static const String list = '${iconsBaseUrl}list.svg';
+  static const String folder = '${iconsBaseUrl}Folder.svg';
   static const String eg = '${iconsBaseUrl}EG.svg';
   static const String explore = '${iconsBaseUrl}explore.svg';
-  static const String folder = '${iconsBaseUrl}Folder.svg';
   static const String watchList = '${iconsBaseUrl}Group 20.svg';
   static const String heart = '${iconsBaseUrl}heart.svg';
   static const String home = '${iconsBaseUrl}home.svg';
@@ -18,6 +20,7 @@ class AppAssets {
   static const String search = '${iconsBaseUrl}search.svg';
   static const String star = '${iconsBaseUrl}star.svg';
   static const String email = '${iconsBaseUrl}email.svg';
+  static const String empty = "${baseUrl}Empty 1.png";
   static const String password = '${iconsBaseUrl}password.svg';
   static const String phone = '${iconsBaseUrl}phone.svg';
   static const String baseUrl = "assets/images/";

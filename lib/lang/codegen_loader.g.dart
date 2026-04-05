@@ -61,6 +61,10 @@ class CodegenLoader extends AssetLoader{
   "forget_password": "نسيت كلمة المرور",
   "verify_email": "تحقق من البريد الإلكتروني",
   "try_again": "حاول مجددا",
+  "wish_list": "قائمة الأمنيات",
+  "history": "السجل",
+  "edit_profile": "تعديل الملف الشخصي",
+  "exit": "خروج",
   "delete_account": "حذف الحساب"
 };
 static const Map<String,dynamic> _en = {
@@ -110,6 +114,10 @@ static const Map<String,dynamic> _en = {
   "forget_password": "Forget Password",
   "verify_email": "Verify Email",
   "try_again": "Try Again",
+  "wish_list": "Wish List",
+  "history": "History",
+  "edit_profile": "Edit Profile",
+  "exit": "Exit",
   "delete_account": "Delete Account"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};

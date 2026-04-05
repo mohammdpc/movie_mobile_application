@@ -23,6 +23,10 @@ import 'package:movie/models/movie_response.dart';
 import 'package:movie/widgets/custom_elevated_button.dart';
 import 'package:movie/home/home_page/widgets/movie_child_widget.dart';
 
+import '../../authentication/cubit/auth_state.dart';
+import '../../authentication/cubit/auth_view_model.dart';
+import '../../models/user_model.dart';
+
 class MovieDetailsScreen extends StatefulWidget {
   final String movieID;
 
@@ -37,12 +41,20 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     movieDetailsRepository: injectMovieDetailsRepository(),
     moviesSuggestionsRepository: injectMoviesSuggestionsRepository(),
   );
+  late AuthViewModel authViewModel;
+  late UserModel user;
 
   @override
-  void initState() {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     movieDetailsViewModel.getMovieData(widget.movieID);
-    super.initState();
+    authViewModel = context.read<AuthViewModel>();
+    final state = authViewModel.state;
+    if (state is AuthSuccessState) {
+      user = state.user;
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +66,12 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
         } else if (state is Error) {
           return Center(child: Text(state.errorMessage));
         } else if (state is Success) {
+          bool isWishList = user.wishList.contains(state.movie.imdbCode);
           debugPrint(state.movie.cast![2].urlSmallImage);
+          if(user.history.contains(state.movie.imdbCode) == false){
+            user.history.add(state.movie.imdbCode??"");
+          }
+          movieDetailsViewModel.addMovieToHistory(id: user.id, history: user.history);
           return SingleChildScrollView(
             child: Column(
               children: [
@@ -114,8 +131,23 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                       width: widthOf(17, context),
                                       height: heightOf(29, context),
                                       child: InkResponse(
-                                        onTap: () => Navigator.pop(context),
-                                        child: Icon(Icons.bookmark),
+                                        onTap: () {
+                                          if(isWishList){
+                                            user.wishList.remove(state.movie.imdbCode??"");
+                                            movieDetailsViewModel.updateMovieWishList(id: user.id, wishList: user.wishList);
+
+                                            isWishList = false;
+                                          }
+                                          else{
+                                            user.wishList.add(state.movie.imdbCode??"");
+                                            movieDetailsViewModel.updateMovieWishList(id: user.id, wishList: user.wishList);
+                                            isWishList = true;
+                                          }
+                                          setState(() {
+
+                                          });
+                                        },
+                                        child: Icon(isWishList?Icons.bookmark_added_rounded:Icons.bookmark_add_outlined,size: 30,),
                                       ),
                                     ),
                                   ),

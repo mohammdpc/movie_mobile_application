@@ -45,5 +45,9 @@
   "forget_password": "Forget Password",
   "verify_email": "Verify Email",
   "try_again": "Try Again",
+  "wish_list": "Wish List",
+  "history": "History",
+  "edit_profile": "Edit Profile",
+  "exit": "Exit",
   "delete_account": "Delete Account"
 }

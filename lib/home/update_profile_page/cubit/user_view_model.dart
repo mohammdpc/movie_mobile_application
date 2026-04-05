@@ -2,11 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/core/utils/firebase_utils.dart';
 import 'package:movie/home/update_profile_page/cubit/user_state.dart';
+import 'package:movie/models/movie_response.dart';
 import 'package:movie/models/user_model.dart';
+import '../../../data/repository/movies/repository/movies_repository.dart';
 import '../user_navigator.dart';
 
 class UserViewModel extends Cubit<UserState> {
-  UserViewModel() : super(UserInitiationState());
+  MoviesRepository? moviesRepository;
+  UserViewModel({this.moviesRepository}) : super(UserInitiationState());
   late UserNavigator navigator;
   late UserModel user;
   Future<void> updateUser({
@@ -69,4 +72,19 @@ class UserViewModel extends Cubit<UserState> {
       }
     }
   }
+  Future<void> getUserHistoryOrWish({int limit = 20,required List<String> queryTerms}) async {
+    List<Movies> movies = [];
+    try{
+      for(int i = 0 ;i<queryTerms.length;i++){
+        var response = await moviesRepository!.getMovies(queryTerm: queryTerms[i]);
+        movies.addAll(response.data!.movies!);
+      }
+      emit(UserWishListOrHistorySuccessState(movies: movies));
+      return;
+    }
+    catch(e){
+      emit(UserErrorState(errorMessage: e.toString()));
+    }
+  }
+
 }

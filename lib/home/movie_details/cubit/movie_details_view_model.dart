@@ -3,6 +3,7 @@ import 'package:movie/data/repository/movie%20suggestions/repository/movies_sugg
 import 'package:movie/models/movie_details.dart';
 import 'package:movie/models/movie_response.dart';
 
+import '../../../core/utils/firebase_utils.dart';
 import 'movie_details_states.dart';
 import 'package:movie/data/repository/movie details/repository/movie_details_repository.dart';
 
@@ -21,5 +22,39 @@ class MovieDetailsViewModel extends Cubit<MovieDetailsStates>{
       return;
     }
     emit(Success(movie,moviesSuggestions));
+  }
+  Future<void> addMovieToHistory({
+    required String id,
+    required List<String> history,
+
+  }) async {
+    try{
+      await FirebaseUtils.getUserCollection()
+          .doc(id)
+          .update({
+        "history":history
+      }).then((value) {});
+    }
+    catch(error){
+      emit(Error(error.toString()));
+    }
+
+  }
+  Future<void> updateMovieWishList({
+    required String id,
+    required List<String> wishList,
+
+  }) async {
+    try{
+      await FirebaseUtils.getUserCollection()
+          .doc(id)
+          .update({
+        "wishList":wishList
+      }).then((value) {});
+    }
+    catch(error){
+      emit(Error(error.toString()));
+    }
+
   }
 }

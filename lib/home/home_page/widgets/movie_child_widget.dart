@@ -8,7 +8,8 @@ class MovieChildWidget extends StatelessWidget {
   final String rating;
   final double top;
   final double left;
-  const MovieChildWidget({super.key, required this.onPress, required this.imgPath, required this.rating, required this.top, required this.left});
+  final double borderRadius;
+  const MovieChildWidget({super.key, required this.onPress, required this.imgPath, required this.rating, required this.top, required this.left,this.borderRadius = 20});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,9 +18,11 @@ class MovieChildWidget extends StatelessWidget {
         child: Stack(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(borderRadius),
               child: CachedNetworkImage(
+                fit: BoxFit.fill,
                 imageUrl: imgPath,
+                // width: double.infinity,
                 placeholder: (context, url) => CircularProgressIndicator(),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
