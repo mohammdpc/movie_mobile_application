@@ -4,6 +4,7 @@ import 'package:movie/core/utils/app_assets.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/core/utils/app_utils.dart';
 import 'package:movie/di.dart';
+import 'package:movie/extensions/device_dimensions.dart';
 import 'package:movie/home/Search/cubit/search_cubit.dart';
 import 'package:movie/home/Search/cubit/search_state.dart';
 import 'package:movie/home/home_page/widgets/movie_child_widget.dart';
@@ -39,8 +40,10 @@ class _SearchScreenState extends State<SearchScreen> {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: widthOf(16, context)),
         child: Column(
+          spacing: context.calcOnHeight(16),
           children: [
             CustomTextField(
+              hintText: "Search here",
               controller: searchController,
               prefixIcon: AppAssets.search,
               onChanged: (v) => searchCubit.searchMovie(queryTerm: v),
@@ -83,10 +86,15 @@ class _SearchScreenState extends State<SearchScreen> {
                       return Center(child: LoadingWidget());
                     }
                     else if(state is SearchErrorState){
-                      return Center(child: Text(state.errorMessage,style: AppStyles.regular20White,),);
+                      if(state.errorMessage == "Null check operator used on a null value"){
+                        return Center(child: Image.asset(AppAssets.empty));
+                      }
+                      else{
+                        return Center(child: Text(state.errorMessage,style: AppStyles.regular20White,),);
+                      }
                     }
                     else{
-                      return Placeholder();
+                      return Center(child: Image.asset(AppAssets.empty));
                     }
                   }
               ),

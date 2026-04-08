@@ -2,6 +2,7 @@ import 'package:movie/models/movie_response.dart';
 
 abstract class SearchState {}
 class SearchLoadingState extends SearchState{}
+class SearchInitiateState extends SearchState{}
 class SearchSuccessState extends SearchState{
   List<Movies> movies;
   SearchSuccessState({required this.movies});

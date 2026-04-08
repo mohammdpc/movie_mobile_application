@@ -7,7 +7,7 @@ import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/extensions/device_dimensions.dart';
 import 'package:movie/home/update_profile_page/historyOrWishList.dart';
 import 'package:movie/home/update_profile_page/widgets/profile_data_widget.dart';
-import 'package:movie/home/update_profile_page/wish_list.dart';
+import 'package:movie/home/widgets/loading_widget.dart';
 import '../../authentication/cubit/auth_state.dart';
 import '../../authentication/cubit/auth_view_model.dart';
 import '../../core/utils/app_colors.dart';
@@ -23,7 +23,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  UserViewModel viewModel = UserViewModel();
+  late UserViewModel viewModel;
   late int currentIconIndex;
   late int wishListNumber;
   late int historyNumber;
@@ -36,6 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     authViewModel = context.read<AuthViewModel>();
+    viewModel = context.read<UserViewModel>();
     final state = authViewModel.state;
     if (state is AuthSuccessState) {
       viewModel.user = state.user;
@@ -52,7 +53,18 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return BlocListener<UserViewModel, UserState>(
       bloc: viewModel,
-      listener: (context, state) {},
+      listenWhen: (previous, current) {
+        if (current is UserWishListOrHistorySuccessState ) {
+          return true;
+        }
+        return false;
+      },
+      listener: (context, state) {
+        setState(() {
+          historyNumber = viewModel.user.history.length;
+          wishListNumber = viewModel.user.wishList.length;
+        });
+      },
       child: DefaultTabController(
         length: 2,
         child: NestedScrollView(
@@ -163,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
           },
           // body: SizedBox(),
           // 3. The Body holds the scrollable GridViews
-          body: TabBarView(children: [HistoryOrWishList(historyOrWish:wishList ,), HistoryOrWishList(historyOrWish: history,)]),
+          body: TabBarView(children: [HistoryOrWishList(historyOrWish:wishList, isHistory: false ,), HistoryOrWishList(historyOrWish: history, isHistory: true,)]),
         ),
       ),
     );

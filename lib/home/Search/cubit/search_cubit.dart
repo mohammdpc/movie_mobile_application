@@ -4,9 +4,10 @@ import '../../../../../data/repository/movies/repository/movies_repository.dart'
 
 class SearchCubit extends Cubit<SearchState>{
   MoviesRepository moviesRepository;
-  SearchCubit(this.moviesRepository):super(SearchLoadingState());
+  SearchCubit(this.moviesRepository):super(SearchInitiateState());
   Future<void> searchMovie({int limit = 20,String? queryTerm}) async {
     try{
+      emit(SearchLoadingState());
       var response = await moviesRepository.getMovies(sortBy:"like_count",queryTerm: queryTerm);
       emit(SearchSuccessState(movies:response.data!.movies!));
       return;

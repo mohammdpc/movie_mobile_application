@@ -23,38 +23,4 @@ class MovieDetailsViewModel extends Cubit<MovieDetailsStates>{
     }
     emit(Success(movie,moviesSuggestions));
   }
-  Future<void> addMovieToHistory({
-    required String id,
-    required List<String> history,
-
-  }) async {
-    try{
-      await FirebaseUtils.getUserCollection()
-          .doc(id)
-          .update({
-        "history":history
-      }).then((value) {});
-    }
-    catch(error){
-      emit(Error(error.toString()));
-    }
-
-  }
-  Future<void> updateMovieWishList({
-    required String id,
-    required List<String> wishList,
-
-  }) async {
-    try{
-      await FirebaseUtils.getUserCollection()
-          .doc(id)
-          .update({
-        "wishList":wishList
-      }).then((value) {});
-    }
-    catch(error){
-      emit(Error(error.toString()));
-    }
-
-  }
 }

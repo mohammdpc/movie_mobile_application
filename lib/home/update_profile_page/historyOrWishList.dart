@@ -15,16 +15,15 @@ import 'cubit/user_view_model.dart';
 
 class HistoryOrWishList extends StatefulWidget {
   final List<String> historyOrWish;
-  const HistoryOrWishList({super.key, required this.historyOrWish});
+  final bool isHistory;
+  const HistoryOrWishList({super.key, required this.historyOrWish, required this.isHistory});
 
   @override
   State<HistoryOrWishList> createState() => _HistoryOrWishListState();
 }
 
 class _HistoryOrWishListState extends State<HistoryOrWishList> {
-  UserViewModel viewModel = UserViewModel(
-    moviesRepository: injectMoviesRepository(),
-  );
+  late UserViewModel viewModel ;
 
   late AuthViewModel authViewModel;
 
@@ -32,11 +31,13 @@ class _HistoryOrWishListState extends State<HistoryOrWishList> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     authViewModel = context.read<AuthViewModel>();
+    viewModel = context.read<UserViewModel>();
+
     final state = authViewModel.state;
     if (state is AuthSuccessState) {
       viewModel.user = state.user;
     }
-    viewModel.getUserHistoryOrWish(queryTerms: widget.historyOrWish);
+    viewModel.getUserHistoryOrWish(queryTerms: widget.historyOrWish, moviesRepository: injectMoviesRepository());
   }
 
   @override
@@ -48,56 +49,61 @@ class _HistoryOrWishListState extends State<HistoryOrWishList> {
           if (state.movies.isEmpty) {
             return Center(child: Image.asset(AppAssets.empty));
           }
-
-          return CustomScrollView(
-            // Use BouncingScrollPhysics for a smooth feel inside NestedScrollView
-            physics: NeverScrollableScrollPhysics(),
-            slivers: [
-              // 1. This "Infector" consumes the space occupied by the pinned TabBar
-              // so your content starts exactly where the TabBar ends.
-              SliverOverlapInjector(
-                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-              ),
-              // 2. The Grid is wrapped in SliverPadding for clean margins
-              SliverPadding(
-                padding:  EdgeInsets.symmetric(horizontal: context.calcOnWidth(16), vertical: context.calcOnHeight(10)),
-                sliver: SliverGrid(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 10,
-                    mainAxisExtent: 180,
-                  ),
-                  delegate: SliverChildBuilderDelegate(
-                        (context, index) => MovieChildWidget(
-                      onPress: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MovieDetailsScreen(
-                              movieID: state.movies[index].id.toString(),
-                            ),
-                          ),
-                        );
-                      },
-                      imgPath: state.movies[index].mediumCoverImage ?? "",
-                      rating: "${state.movies[index].rating}",
-                      top: 10,
-                      left: 5,
-                      borderRadius: 16,
+          else{
+            return CustomScrollView(
+              // Use BouncingScrollPhysics for a smooth feel inside NestedScrollView
+              physics: NeverScrollableScrollPhysics(),
+              slivers: [
+                // 1. This "Infector" consumes the space occupied by the pinned TabBar
+                // so your content starts exactly where the TabBar ends.
+                SliverOverlapInjector(
+                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                ),
+                // 2. The Grid is wrapped in SliverPadding for clean margins
+                SliverPadding(
+                  padding:  EdgeInsets.only(left: context.calcOnWidth(16),right:context.calcOnWidth(16),bottom: 70,top: context.calcOnHeight(10)),
+                  sliver: SliverGrid(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 10,
+                      mainAxisExtent: 180,
                     ),
-                    // Use state.movies.length to ensure safety with the UI data
-                    childCount: state.movies.length,
+                    delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            int reversedIndex = (state.movies.length - 1) - index;
+                            return MovieChildWidget(
+                              onPress: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MovieDetailsScreen(
+                                      isHistory: widget.isHistory,
+                                      movieID: state.movies[reversedIndex].id.toString(),
+                                    ),
+                                  ),
+                                );
+                              },
+                              imgPath: state.movies[reversedIndex].mediumCoverImage ?? "",
+                              rating: "${state.movies[reversedIndex].rating}",
+                              top: 10,
+                              left: 5,
+                              borderRadius: 16,
+                            );
+                          },
+                      // Use state.movies.length to ensure safety with the UI data
+                      childCount: state.movies.length,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          );
+              ],
+            );
+          }
         } else if (state is UserErrorState) {
           return MainErrorWidget(
             errorMessage: state.errorMessage,
             onPressed: () {
-              viewModel.getUserHistoryOrWish(queryTerms: widget.historyOrWish);
+              viewModel.getUserHistoryOrWish(queryTerms: widget.historyOrWish, moviesRepository: injectMoviesRepository());
             },
           );
         } else {
