@@ -5,6 +5,10 @@ class GenreSuccessState extends GenreState{
   List<List<Movies>> moviesGroups = [];
   GenreSuccessState({required this.moviesGroups});
 }
+class OneGenreSuccessState extends GenreState{
+  List<Movies> movies = [];
+  OneGenreSuccessState({required this.movies});
+}
 class GenreErrorState extends GenreState{
   String errorMessage;
   GenreErrorState({required this.errorMessage});

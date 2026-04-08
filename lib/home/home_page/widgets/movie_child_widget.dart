@@ -9,43 +9,53 @@ class MovieChildWidget extends StatelessWidget {
   final double top;
   final double left;
   final double borderRadius;
-  const MovieChildWidget({super.key, required this.onPress, required this.imgPath, required this.rating, required this.top, required this.left,this.borderRadius = 20});
+
+  const MovieChildWidget({
+    super.key,
+    required this.onPress,
+    required this.imgPath,
+    required this.rating,
+    required this.top,
+    required this.left,
+    this.borderRadius = 20,
+  });
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPress,
-      child: Center(
-        child: Stack(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(borderRadius),
-              child: CachedNetworkImage(
-                fit: BoxFit.fill,
-                imageUrl: imgPath,
-                // width: double.infinity,
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+    return Center(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(borderRadius),
+        child: CachedNetworkImage(
+          imageUrl: imgPath,
+          // Shows while loading
+          placeholder: (context, url) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          // Shows if the image fails to load
+          errorWidget: (context, url, error) => const Center(
+            child: Icon(Icons.error),
+          ),
+          // ONLY builds when the image is fully loaded and ready
+          imageBuilder: (context, imageProvider) {
+            return GestureDetector(
+              onTap: onPress,
+              child: Stack(
+                children: [
+                  // The actual loaded image
+                  Image(
+                    image: imageProvider,
+                    fit: BoxFit.fill,
+                  ),
+                  // The rating container overlays the image
+                  Positioned(
+                    top: top,
+                    left: left,
+                    child: RatingContainer(rating: rating),
+                  ),
+                ],
               ),
-
-              // Image.network(
-              //   imgPath,
-              //   loadingBuilder: (context, child, loadingProgress) {
-              //     if(loadingProgress == null){
-              //       return child;
-              //     }
-              //     return SizedBox();
-              //   },
-              //   errorBuilder: (context, error, stackTrace) {
-              //     return const Icon(Icons.broken_image);
-              //   },
-              // ),
-            ),
-            Positioned(
-                top:top,
-                left:left,
-                child: RatingContainer(rating: rating)
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

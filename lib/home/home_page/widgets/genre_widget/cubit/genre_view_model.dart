@@ -28,4 +28,20 @@ class GenreViewModel extends Cubit<GenreState>{
       emit(GenreErrorState(errorMessage: e.toString()));
     }
   }
+  Future<void> getMovieByGenre({int limit = 20,required String imdbGenre}) async {
+    try{
+      emit(GenreLoadingState());
+      // var response = await moviesRepository.getMovies(genre: genre,sortBy:"like_count");
+        var response = await moviesRepository.getMovies(genre: imdbGenre,sortBy:"like_count",limit: limit.toString(),);
+        if(response.status == "error"){
+          emit(GenreErrorState(errorMessage: response.statusMessage!));
+          return;
+        }
+      emit(OneGenreSuccessState( movies: response.data?.movies ?? []));
+      return;
+    }
+    catch(e){
+      emit(GenreErrorState(errorMessage: e.toString()));
+    }
+  }
 }

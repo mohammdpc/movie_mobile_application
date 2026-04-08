@@ -14,9 +14,8 @@ import 'cubit/user_state.dart';
 import 'cubit/user_view_model.dart';
 
 class HistoryOrWishList extends StatefulWidget {
-  final List<String> historyOrWish;
   final bool isHistory;
-  const HistoryOrWishList({super.key, required this.historyOrWish, required this.isHistory});
+  const HistoryOrWishList({super.key, required this.isHistory});
 
   @override
   State<HistoryOrWishList> createState() => _HistoryOrWishListState();
@@ -37,7 +36,7 @@ class _HistoryOrWishListState extends State<HistoryOrWishList> {
     if (state is AuthSuccessState) {
       viewModel.user = state.user;
     }
-    viewModel.getUserHistoryOrWish(queryTerms: widget.historyOrWish, moviesRepository: injectMoviesRepository());
+    viewModel.getUserHistoryOrWish(queryTerms:widget.isHistory?viewModel.user.history:viewModel.user.wishList , moviesRepository: injectMoviesRepository());
   }
 
   @override
@@ -103,7 +102,7 @@ class _HistoryOrWishListState extends State<HistoryOrWishList> {
           return MainErrorWidget(
             errorMessage: state.errorMessage,
             onPressed: () {
-              viewModel.getUserHistoryOrWish(queryTerms: widget.historyOrWish, moviesRepository: injectMoviesRepository());
+              viewModel.getUserHistoryOrWish(queryTerms: widget.isHistory?viewModel.user.history:viewModel.user.wishList, moviesRepository: injectMoviesRepository());
             },
           );
         } else {

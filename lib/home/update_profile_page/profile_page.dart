@@ -175,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
           },
           // body: SizedBox(),
           // 3. The Body holds the scrollable GridViews
-          body: TabBarView(children: [HistoryOrWishList(historyOrWish:wishList, isHistory: false ,), HistoryOrWishList(historyOrWish: history, isHistory: true,)]),
+          body: TabBarView(children: [HistoryOrWishList( isHistory: false ,), HistoryOrWishList( isHistory: true,)]),
         ),
       ),
     );
