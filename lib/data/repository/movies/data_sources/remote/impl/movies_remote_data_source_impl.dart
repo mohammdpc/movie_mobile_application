@@ -5,8 +5,8 @@ class MoviesRemoteDataSourceImpl implements MoviesRemoteDataSource{
   ApiManger apiManger;
   MoviesRemoteDataSourceImpl({required this.apiManger});
   @override
-  Future<MovieResponse> getMovies({String? sortBy,String? orderBy,String? genre,String? limit}) async {
-    var movieResponse = await apiManger.getMovies(sortBy: sortBy,orderBy: orderBy,genre: genre,limit: limit);
+  Future<MovieResponse> getMovies({String? sortBy,String? orderBy,String? genre,String? limit,String? queryTerm}) async {
+    var movieResponse = await apiManger.getMovies(sortBy: sortBy,orderBy: orderBy,genre: genre,limit: limit,queryTerm: queryTerm);
     return movieResponse;
   }
 }

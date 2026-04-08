@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie/extensions/device_dimensions.dart';
+import 'package:movie/home/Search/search_screen.dart';
 import 'package:movie/home/browse/browse_screen.dart';
 import 'package:movie/home/home_page/home_page.dart';
+import 'package:movie/home/update_profile_page/profile_page.dart';
 import 'package:movie/home/update_profile_page/update_profile_page.dart';
 
 import '../core/utils/app_assets.dart';
@@ -17,7 +19,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
-  List<Widget> tabs = [HomePage(),HomePage(),BrowseScreen(),UpdateProfilePage()];
+  List<Widget> tabs = [HomePage(),SearchScreen(),BrowseScreen(),ProfilePage()];
 
   @override
   Widget build(BuildContext context) {

@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
                     state is TrendMoviesLoadingState
                         ? SizedBox()
                         : GenreBlocWidget(),
+                    SizedBox(height: 70,),
                   ],
                 ),
               );

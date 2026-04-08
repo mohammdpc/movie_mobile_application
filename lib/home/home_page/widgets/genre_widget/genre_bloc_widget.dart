@@ -18,45 +18,19 @@ class GenreBlocWidget extends StatefulWidget {
 }
 
 class _GenreBlocWidgetState extends State<GenreBlocWidget> {
-  GenreViewModel viewModel = GenreViewModel(
-    moviesRepository: injectMoviesRepository(),
-  );
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    viewModel.getMoviesByGenre();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GenreViewModel, GenreState>(
-      bloc: viewModel,
-      builder: (context, state) {
-        if (state is GenreErrorState) {
-          return MainErrorWidget(
-            errorMessage: state.errorMessage,
-            onPressed: () {
-              viewModel.getMoviesByGenre();
-            },
-          );
-        } else if (state is GenreSuccessState) {
-          return ListView.separated(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder:
-                (context, index) => GenreWidget(
-                  genre: ImdbGenres.all[index],
-                  moviesList: state.moviesGroups[index],
-                ),
-            separatorBuilder:
-                (context, index) => SizedBox(height: context.calcOnHeight(20)),
-            itemCount: ImdbGenres.all.length,
-          );
-        } else {
-          return LoadingWidget();
-        }
-      },
-    );
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder:
+          (context, index) => GenreWidget(
+        genre: ImdbGenres.all[index],
+      ),
+      separatorBuilder:
+          (context, index) => SizedBox(height: context.calcOnHeight(20)),
+      itemCount: ImdbGenres.all.length,
+    );;
   }
 }

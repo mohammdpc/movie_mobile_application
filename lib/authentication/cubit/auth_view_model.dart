@@ -26,7 +26,9 @@ class AuthViewModel extends Cubit<AuthState>{
           id: credential.user?.uid ?? "",
           email: email,
           name: name, phone: phone,
-          avatarIndex: avatarIndex
+          avatarIndex: avatarIndex,
+          wishList: [],
+          history: []
       );
       await FirebaseUtils.addUserToFireStore(newUser);
       registerNavigator.hideDialog();
@@ -115,7 +117,7 @@ class AuthViewModel extends Cubit<AuthState>{
         UserModel? userDoc = await FirebaseUtils.getUserFromFireStore(user.uid);
 
         if (userDoc == null) {
-          userDoc = UserModel(id: user.uid, name: user.displayName??"", email: user.email??"", phone: user.phoneNumber??"", avatarIndex: 1);
+          userDoc = UserModel(id: user.uid, name: user.displayName??"", email: user.email??"", phone: user.phoneNumber??"", avatarIndex: 1, wishList: [], history: []);
           await FirebaseUtils.addUserToFireStore(userDoc);
         }
         loginNavigator.hideDialog();

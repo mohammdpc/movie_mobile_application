@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/authentication/reset_password/reset_password.dart';
-import 'package:movie/home/forget_password_page/forget_password_page.dart';
+
 import 'package:movie/home/main_page.dart';
 import 'package:movie/home/update_profile_page/update_profile_page.dart';
 import 'package:movie/on_boarding/onboarding_screen.dart';
@@ -14,6 +14,7 @@ import 'core/utils/app_routes.dart';
 import 'core/utils/app_theme.dart';
 import 'core/utils/my_block_observer.dart';
 import 'firebase_options.dart';
+import 'home/update_profile_page/cubit/user_view_model.dart';
 import 'lang/codegen_loader.g.dart';
 //reset the branch
 Future<void> main() async {
@@ -40,6 +41,8 @@ class MyApp extends StatelessWidget {
     return  MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => AuthViewModel()),
+        BlocProvider(create: (_) => UserViewModel()),
+
       ],
       child: MaterialApp(
         localizationsDelegates: context.localizationDelegates,

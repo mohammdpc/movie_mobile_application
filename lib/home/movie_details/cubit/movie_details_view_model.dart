@@ -3,6 +3,7 @@ import 'package:movie/data/repository/movie%20suggestions/repository/movies_sugg
 import 'package:movie/models/movie_details.dart';
 import 'package:movie/models/movie_response.dart';
 
+import '../../../core/utils/firebase_utils.dart';
 import 'movie_details_states.dart';
 import 'package:movie/data/repository/movie details/repository/movie_details_repository.dart';
 

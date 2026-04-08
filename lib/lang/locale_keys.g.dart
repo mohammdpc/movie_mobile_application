@@ -49,6 +49,10 @@ abstract class  LocaleKeys {
   static const forget_password = 'forget_password';
   static const verify_email = 'verify_email';
   static const try_again = 'try_again';
+  static const wish_list = 'wish_list';
+  static const history = 'history';
+  static const edit_profile = 'edit_profile';
+  static const exit = 'exit';
   static const delete_account = 'delete_account';
 
 }

@@ -20,6 +20,10 @@ class TrendMoviesViewModel extends Cubit<TrendMoviesState>{
       }
     }
     catch(e){
+      if(e.toString().contains("ClientException with SocketException")){
+        emit(TrendMoviesErrorState(errorMessage: "Network Problem"));
+        return;
+      }
       emit(TrendMoviesErrorState(errorMessage: e.toString()));
     }
   }

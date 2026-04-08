@@ -45,5 +45,9 @@
   "forget_password": "نسيت كلمة المرور",
   "verify_email": "تحقق من البريد الإلكتروني",
   "try_again": "حاول مجددا",
+  "wish_list": "قائمة الأمنيات",
+  "history": "السجل",
+  "edit_profile": "تعديل الملف الشخصي",
+  "exit": "خروج",
   "delete_account": "حذف الحساب"
 }

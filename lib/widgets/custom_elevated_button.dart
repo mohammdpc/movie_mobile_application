@@ -6,16 +6,20 @@ class CustomElevatedButton extends StatelessWidget {
   final String text;
   final Color? backgroundColor;
   final TextStyle textStyle;
-  final Widget? icon;
+  final Widget? beginIcon;
+  final Widget? endIcon;
   final Color borderColor;
+  final double? horizontalPadding;
   const CustomElevatedButton({
     super.key,
     required this.function,
     required this.text,
     this.backgroundColor,
     required this.textStyle,
-    this.icon,
+    this.beginIcon,
     this.borderColor = AppColors.accentYellow,
+    this.endIcon,
+    this.horizontalPadding,
   });
 
   @override
@@ -29,13 +33,17 @@ class CustomElevatedButton extends StatelessWidget {
         ),
       ),
       onPressed: function,
-      child: Row(
-        spacing: 12,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          icon == null ? SizedBox() : icon!,
-          Text(text, style: textStyle),
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal:horizontalPadding??0 ),
+        child: Row(
+          spacing: 12,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            beginIcon == null ? SizedBox() : beginIcon!,
+            Text(text, style: textStyle),
+            endIcon == null ? SizedBox() : endIcon!,
+          ],
+        ),
       ),
     );
   }
