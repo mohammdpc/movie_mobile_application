@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:movie/core/utils/app_assets.dart';
 import 'package:movie/core/utils/app_colors.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/core/utils/app_utils.dart';
-
 import 'package:movie/home/movie_details/cubit/movie_details_states.dart';
 import 'package:movie/home/movie_details/cubit/movie_details_view_model.dart';
 import 'package:movie/home/movie_details/widgets/cast_card.dart';
 import 'package:movie/home/movie_details/widgets/genres_card.dart';
 import 'package:movie/home/movie_details/widgets/info_card.dart';
 import 'package:movie/home/movie_details/widgets/screenShotCard.dart';
-
 import 'package:movie/di.dart';
-
 import 'package:movie/extensions/device_dimensions.dart';
-
 import 'package:movie/home/widgets/loading_widget.dart';
 import 'package:movie/models/movie_response.dart';
 import 'package:movie/widgets/custom_elevated_button.dart';
 import 'package:movie/home/home_page/widgets/movie_child_widget.dart';
-
 import '../../authentication/cubit/auth_state.dart';
 import '../../authentication/cubit/auth_view_model.dart';
 import '../../models/user_model.dart';
-import '../update_profile_page/cubit/user_view_model.dart';
+import '../profile_page/cubit/user_view_model.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   final String movieID;

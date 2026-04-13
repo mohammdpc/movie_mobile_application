@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/extensions/device_dimensions.dart';
 import 'package:movie/home/home_page/widgets/trend_movies/widgets/rating_container.dart';
 
 class MovieChildWidget extends StatelessWidget {
@@ -28,8 +29,11 @@ class MovieChildWidget extends StatelessWidget {
         child: CachedNetworkImage(
           imageUrl: imgPath,
           // Shows while loading
-          placeholder: (context, url) => const Center(
-            child: CircularProgressIndicator(),
+          placeholder: (context, url) => SizedBox(
+            width: context.calcOnWidth(65),
+          child: const Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
           // Shows if the image fails to load
           errorWidget: (context, url, error) => const Center(

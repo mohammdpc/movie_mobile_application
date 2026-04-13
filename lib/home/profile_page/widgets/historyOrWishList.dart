@@ -3,15 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movie/core/utils/app_assets.dart';
 import 'package:movie/extensions/device_dimensions.dart';
-import '../../authentication/cubit/auth_state.dart';
-import '../../authentication/cubit/auth_view_model.dart';
-import '../../di.dart';
-import '../home_page/widgets/movie_child_widget.dart';
-import '../movie_details/movie_details_screen.dart';
-import '../widgets/loading_widget.dart';
-import '../widgets/main_error_widget.dart';
-import 'cubit/user_state.dart';
-import 'cubit/user_view_model.dart';
+import '../../../authentication/cubit/auth_state.dart';
+import '../../../authentication/cubit/auth_view_model.dart';
+import '../../../di.dart';
+import '../../home_page/widgets/movie_child_widget.dart';
+import '../../movie_details/movie_details_screen.dart';
+import '../../widgets/loading_widget.dart';
+import '../../widgets/main_error_widget.dart';
+import '../cubit/user_state.dart';
+import '../cubit/user_view_model.dart';
 
 class HistoryOrWishList extends StatefulWidget {
   final bool isHistory;

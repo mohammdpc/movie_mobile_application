@@ -9,15 +9,16 @@ import 'package:movie/core/utils/app_routes.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/extensions/device_dimensions.dart';
 import 'package:movie/extensions/validations.dart';
-import 'package:movie/home/update_profile_page/cubit/user_view_model.dart';
-import 'package:movie/home/update_profile_page/user_navigator.dart';
-import 'package:movie/home/update_profile_page/widgets/bottom_dialog.dart';
+import 'package:movie/home/cubit/main_page_view_mode;.dart';
+import 'package:movie/home/profile_page/user_navigator.dart';
+import 'package:movie/home/profile_page/widgets/bottom_dialog.dart';
 import 'package:movie/lang/locale_keys.g.dart';
 import 'package:movie/widgets/custom_elevated_button.dart';
 import 'package:movie/widgets/custom_text_field.dart';
 import '../../authentication/cubit/auth_state.dart';
 import '../../core/utils/dialog_utils.dart';
 import 'cubit/user_state.dart';
+import 'cubit/user_view_model.dart';
 
 class UpdateProfilePage extends StatefulWidget {
   UpdateProfilePage({super.key});
@@ -32,24 +33,34 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> implements UserNa
   UserViewModel viewModel = UserViewModel();
   late int currentIconIndex ;
   late AuthViewModel authViewModel;
+  late MainPageViewModel mainPageViewModel;
   final _formKey = GlobalKey<FormState>();
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
+
+    // 1. Access the ViewModel/State once
     authViewModel = context.read<AuthViewModel>();
+    mainPageViewModel = context.read<MainPageViewModel>();
     final state = authViewModel.state;
+
     if (state is AuthSuccessState) {
       viewModel.user = state.user;
     }
-    userNameController = TextEditingController(
-      text: viewModel.user.name,
-    );
-    currentIconIndex = viewModel.user.avatarIndex;
-    phoneController = TextEditingController(
-      text: viewModel.user.phone,
-    );
-    viewModel.navigator = this;
 
+    // 2. Initialize controllers ONLY once
+    userNameController = TextEditingController(text: viewModel.user.name);
+    phoneController = TextEditingController(text: viewModel.user.phone);
+    currentIconIndex = viewModel.user.avatarIndex;
+
+    // 3. Setup the navigator
+    viewModel.navigator = this;
+  }
+
+// Remove the logic from didChangeDependencies entirely
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
   @override
   void dispose() {
@@ -79,6 +90,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> implements UserNa
               function: () async {
                 await viewModel.deleteUserAccount(viewModel.user.id);
                 authViewModel.deleteAccount();
+                mainPageViewModel.changeIndex(index: 0);
               },
               text: LocaleKeys.delete_account.tr(),
               textStyle: AppStyles.regular20White,
@@ -89,7 +101,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> implements UserNa
             CustomElevatedButton(
               function: () async {
                 if (_formKey.currentState!.validate()) {
-                  await viewModel.updateUser(id: viewModel.user.id, name: userNameController.text, email: viewModel.user.email,phone: phoneController.text, avatarIndex: currentIconIndex);
+                  await viewModel.updateUser(id: viewModel.user.id, name: userNameController.text, email: viewModel.user.email,phone: phoneController.text, avatarIndex: currentIconIndex, authViewModel: authViewModel);
                 }
               },
               text: LocaleKeys.update_data.tr(),
@@ -205,7 +217,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> implements UserNa
         message:message,
         posActionName: "Ok",
         posAction: () {
-          isDelete?Navigator.of(context,).pushReplacementNamed(AppRoutes.loginScreen):Navigator.of(context,).pushReplacementNamed(AppRoutes.mainScreen);
+          isDelete?Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.loginScreen, (route) => false,):Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.mainScreen, (route) => false,);
         }
     );
   }

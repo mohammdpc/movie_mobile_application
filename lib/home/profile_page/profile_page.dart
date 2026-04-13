@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movie/core/utils/app_assets.dart';
+import 'package:movie/core/utils/app_routes.dart';
 import 'package:movie/core/utils/app_styles.dart';
 import 'package:movie/extensions/device_dimensions.dart';
-import 'package:movie/home/update_profile_page/historyOrWishList.dart';
-import 'package:movie/home/update_profile_page/widgets/profile_data_widget.dart';
-import 'package:movie/home/widgets/loading_widget.dart';
+import 'package:movie/home/cubit/main_page_view_mode;.dart';
+import 'package:movie/home/profile_page/widgets/profile_data_widget.dart';
 import '../../authentication/cubit/auth_state.dart';
 import '../../authentication/cubit/auth_view_model.dart';
 import '../../core/utils/app_colors.dart';
@@ -15,6 +15,7 @@ import '../../lang/locale_keys.g.dart';
 import '../../widgets/custom_elevated_button.dart';
 import 'cubit/user_state.dart';
 import 'cubit/user_view_model.dart';
+import 'widgets/historyOrWishList.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -29,6 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   late int historyNumber;
   late String userName;
   late AuthViewModel authViewModel;
+  late MainPageViewModel mainPageViewModel;
   late List<String> wishList;
   late List<String> history;
 
@@ -36,6 +38,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     authViewModel = context.read<AuthViewModel>();
+    mainPageViewModel = context.read<MainPageViewModel>();
     viewModel = context.read<UserViewModel>();
     final state = authViewModel.state;
     if (state is AuthSuccessState) {
@@ -124,7 +127,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             Expanded(
                               child: CustomElevatedButton(
-                                function: () {},
+                                function: () {
+                                  Navigator.of(context).pushNamed(AppRoutes.updateProfileScreen);
+                                },
                                 text: LocaleKeys.edit_profile.tr(),
                                 textStyle: AppStyles.regular20Black,
                               ),
@@ -132,7 +137,11 @@ class _ProfilePageState extends State<ProfilePage> {
                             CustomElevatedButton(
                               horizontalPadding: context.calcOnWidth(31),
                               endIcon: SvgPicture.asset(AppAssets.exit),
-                              function: () {},
+                              function: () {
+                                authViewModel.logout();
+                                Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.loginScreen, (route) => false,);
+                                mainPageViewModel.changeIndex(index: 0);
+                              },
                               text: LocaleKeys.exit.tr(),
                               textStyle: AppStyles.regular20White,
                               backgroundColor: AppColors.red,
@@ -175,7 +184,9 @@ class _ProfilePageState extends State<ProfilePage> {
           },
           // body: SizedBox(),
           // 3. The Body holds the scrollable GridViews
-          body: TabBarView(children: [HistoryOrWishList( isHistory: false ,), HistoryOrWishList( isHistory: true,)]),
+          body: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
+              children: [HistoryOrWishList( isHistory: false ,), HistoryOrWishList( isHistory: true,)]),
         ),
       ),
     );

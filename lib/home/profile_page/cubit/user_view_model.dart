@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/authentication/cubit/auth_view_model.dart';
 import 'package:movie/core/utils/firebase_utils.dart';
-import 'package:movie/home/update_profile_page/cubit/user_state.dart';
+import 'package:movie/home/profile_page/cubit/user_state.dart';
 import 'package:movie/models/movie_response.dart';
 import 'package:movie/models/user_model.dart';
 import '../../../authentication/cubit/auth_state.dart';
@@ -21,6 +21,7 @@ class UserViewModel extends Cubit<UserState> {
     required String email,
     required String phone,
     required int avatarIndex,
+    required AuthViewModel authViewModel,
   }) async {
     try{
       emit(UserLoadingState());
@@ -33,9 +34,14 @@ class UserViewModel extends Cubit<UserState> {
         "phone": phone,
         "avatarIndex": avatarIndex,
       }).then((value) {});
+      final state = authViewModel.state;
+      if (state is AuthSuccessState) {
+        state.user = UserModel(id: id, name: name, email: email, phone: phone, avatarIndex: avatarIndex, wishList: state.user.wishList, history: state.user.history);
+      }
       navigator.hideDialog();
       emit(UserSuccessState());
       navigator.showSuccess(message: "Updated Successfully", isDelete: false);
+
 
     }
     catch(error){
@@ -75,18 +81,29 @@ class UserViewModel extends Cubit<UserState> {
       }
     }
   }
-  Future<void> getUserHistoryOrWish({int limit = 20,required List<String> queryTerms,required MoviesRepository moviesRepository}) async {
+  Future<void> getUserHistoryOrWish({
+    int limit = 20,
+    required List<String> queryTerms,
+    required MoviesRepository moviesRepository,
+  }) async {
     movies = [];
-    try{
+    try {
       emit(TabLoadingState());
-      for(int i = 0 ;i<queryTerms.length;i++){
-        var response = await moviesRepository.getMovies(queryTerm: queryTerms[i]);
-        movies.addAll(response.data!.movies!);
+
+      // 1. Create a list of all your future requests
+      final futures = queryTerms.map((term) =>
+          moviesRepository.getMovies(queryTerm: term)
+      ).toList();
+      // 2. Execute them all in parallel
+      final responses = await Future.wait(futures);
+      for (var response in responses) {
+        if (response.data?.movies != null) {
+          movies.addAll(response.data!.movies!);
+        }
       }
+
       emit(UserWishListOrHistorySuccessState(movies: movies));
-      return;
-    }
-    catch(e){
+    } catch (e) {
       emit(UserErrorState(errorMessage: e.toString()));
     }
   }

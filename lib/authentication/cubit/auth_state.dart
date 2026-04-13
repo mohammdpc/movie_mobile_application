@@ -3,7 +3,7 @@ import 'package:movie/models/user_model.dart';
 abstract class AuthState{}
 class AuthInitState extends AuthState{}
 class AuthSuccessState extends AuthState{
-  final UserModel user;
+  UserModel user;
   AuthSuccessState({required this.user});
 }
 class AuthResetSuccessfullyState extends AuthState{}

@@ -56,6 +56,7 @@ class _GenreWidgetState extends State<GenreWidget> {
               shrinkWrap: true,
               itemCount: state.movies.length,
               itemBuilder: (context, index) {
+                // can be removed
                 return MovieChildWidget(onPress: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context)=>MovieDetailsScreen(movieID: state.movies[index].id.toString())));
                 }, imgPath: state.movies[index].mediumCoverImage??"", rating: "${state.movies[index].rating}", top: 13, left: 14);

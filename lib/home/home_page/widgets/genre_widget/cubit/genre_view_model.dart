@@ -6,7 +6,9 @@ import '../../../../../models/movie_response.dart';
 
 class GenreViewModel extends Cubit<GenreState>{
   final MoviesRepository moviesRepository;
+
   GenreViewModel({required this.moviesRepository}):super(GenreLoadingState());
+
   Future<void> getMoviesByGenre({int limit = 20,}) async {
     List<List<Movies>> moviesGroups = [];
     try{

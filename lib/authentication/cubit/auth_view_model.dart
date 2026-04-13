@@ -88,7 +88,6 @@ class AuthViewModel extends Cubit<AuthState>{
     }
   }
   void deleteAccount(){
-    emit(AuthInitState());
   }
   Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
